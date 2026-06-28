@@ -1,0 +1,51 @@
+---
+import Default from '@astrojs/starlight/components/Head.astro';
+import { Font } from 'astro:assets';
+
+// ── Analytics beacon (Tinybird Events API) ───────────────────────────
+// 쿠키·핑거프린팅·IP 수집 없음. pageview + contact_click(mailto)만 기록.
+// 질의는 tinybird/README.md 참조 (Claude Code용 치트시트).
+// TODO(analytics): `tb --cloud deploy` 후 append-only 토큰(events_append)을
+// 발급해 TB_TOKEN에 입력하면 수집 시작.
+const TB_HOST = 'https://api.us-west-2.aws.tinybird.co';
+const TB_TOKEN = '';
+
+const beaconJs = `
+(function () {
+	if (location.hostname === 'localhost' || navigator.doNotTrack === '1') return;
+	var send = function (event) {
+		var body = JSON.stringify({
+			timestamp: new Date().toISOString().slice(0, 19).replace('T', ' '),
+			event: event,
+			path: location.pathname,
+			referrer: document.referrer || '',
+			lang: navigator.language || '',
+			user_agent: navigator.userAgent || '',
+		});
+		var url = '${TB_HOST}/v0/events?name=analytics_events&token=${TB_TOKEN}';
+		if (navigator.sendBeacon) navigator.sendBeacon(url, body);
+		else fetch(url, { method: 'POST', body: body, keepalive: true });
+	};
+	send('pageview');
+	document.addEventListener('click', function (e) {
+		var a = e.target && e.target.closest && e.target.closest('a[href^="mailto:"]');
+		if (a) send('contact_click');
+	});
+})();
+`;
+---
+
+<Font cssVariable="--font-geist" preload />
+<Font cssVariable="--font-geist-mono" />
+<Font cssVariable="--font-noto-kr" />
+
+<Default><slot /></Default>
+
+{/* Default social share card — individual reports can override later. */}
+<meta property="og:image" content={new URL('/og.png', Astro.site)} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content={new URL('/og.png', Astro.site)} />
+
+{TB_TOKEN && <script is:inline set:html={beaconJs} />}

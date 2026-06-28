@@ -1,0 +1,595 @@
+/* ============================================================
+   ratelcode · Phosphor Terminal — Vercel/Geist preset
+   Adapted from the Claude Design handoff bundle.
+   Fonts: self-hosted via Astro 6 Fonts API (see astro.config.mjs).
+   ============================================================ */
+
+/* ── Starlight variable overrides ────────────────────────── */
+:root {
+  --sl-font:
+    var(--font-geist), var(--font-noto-kr), ui-sans-serif, system-ui,
+    -apple-system, sans-serif;
+  /* Noto KR sits in the mono chain too — Geist Mono has no hangul, and
+     without it Korean inside mono UI falls back to a random system sans. */
+  --sl-font-mono:
+    var(--font-geist-mono), var(--font-noto-kr), ui-monospace, "SF Mono",
+    Menlo, Consolas, monospace;
+
+  /* Phosphor green — the one non-monochrome voice in the system. */
+  --phos: #00e599;
+}
+
+:root,
+[data-theme="dark"] {
+  --sl-color-white: #ededed;
+  --sl-color-gray-1: #d4d4d4;
+  --sl-color-gray-2: #a1a1a1;
+  --sl-color-gray-3: #666666;
+  --sl-color-gray-4: #404040;
+  --sl-color-gray-5: #262626;
+  --sl-color-gray-6: #171717;
+  --sl-color-black: #000000;
+
+  --sl-color-bg: #000000;
+  --sl-color-bg-nav: #0a0a0a;
+  --sl-color-bg-sidebar: #000000;
+  --sl-color-bg-inline-code: #171717;
+
+  --sl-color-text: #ededed;
+  --sl-color-text-accent: #00e599;
+  --sl-color-accent-low: #04261b;
+  --sl-color-accent: #00b377;
+  --sl-color-accent-high: #7dffd0;
+
+  --sl-color-hairline: rgba(255, 255, 255, 0.14);
+  --sl-color-hairline-light: rgba(255, 255, 255, 0.06);
+  --sl-color-hairline-shade: rgba(255, 255, 255, 0.1);
+
+  --phos: #00e599;
+}
+
+[data-theme="light"] {
+  --sl-color-white: #0a0a0a;
+  --sl-color-gray-1: #404040;
+  --sl-color-gray-2: #525252;
+  --sl-color-gray-3: #737373;
+  --sl-color-gray-4: #a3a3a3;
+  --sl-color-gray-5: #d4d4d4;
+  --sl-color-gray-6: #e5e5e5;
+  --sl-color-black: #ffffff;
+
+  --sl-color-bg: #ffffff;
+  --sl-color-bg-nav: #fafafa;
+  --sl-color-bg-sidebar: #ffffff;
+  --sl-color-bg-inline-code: #f5f5f5;
+
+  --sl-color-text: #0a0a0a;
+  --sl-color-text-accent: #00805c;
+  --sl-color-accent-low: #d9f5e9;
+  --sl-color-accent: #00805c;
+  --sl-color-accent-high: #00543c;
+
+  --sl-color-hairline: rgba(0, 0, 0, 0.12);
+  --sl-color-hairline-light: rgba(0, 0, 0, 0.05);
+  --sl-color-hairline-shade: rgba(0, 0, 0, 0.08);
+
+  --phos: #00805c;
+}
+
+/* ── Design system tokens (used by custom blocks below) ──── */
+:root {
+  --bg: var(--sl-color-bg);
+  --bg-2: var(--sl-color-bg-nav);
+  --panel: var(--sl-color-bg-nav);
+  --panel-2: var(--sl-color-gray-6);
+  --line: var(--sl-color-hairline);
+  --line-soft: var(--sl-color-hairline-light);
+  --fg: var(--sl-color-text);
+  --fg-soft: var(--sl-color-gray-2);
+  --fg-mute: var(--sl-color-gray-3);
+  --accent: var(--sl-color-text-accent);
+  --accent-soft: var(--sl-color-gray-1);
+  --font-mono: var(--sl-font-mono);
+  --font-display: var(--sl-font-mono);
+}
+
+/* ── Body baseline ───────────────────────────────────────── */
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── Brand mark (SiteTitle override) ─────────────────────── */
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--fg);
+  text-decoration: none;
+}
+.brand-mark:hover {
+  color: var(--fg);
+}
+.brand-mark .glyph {
+  font-size: 13px;
+  color: var(--accent);
+  line-height: 1;
+}
+.brand-mark .name {
+  color: var(--fg);
+}
+.brand-mark .ver {
+  color: var(--fg-mute);
+  margin-left: 2px;
+  font-size: 0.85em;
+}
+
+/* ── Site disclaimer (Footer override) ───────────────────── */
+.site-disclaimer {
+  margin-top: 48px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--line-soft);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--fg-mute);
+}
+.site-disclaimer + .statusbar {
+  margin-top: 0;
+}
+
+/* ── Status bar (Footer override) ────────────────────────── */
+.statusbar {
+  height: 28px;
+  margin-top: 48px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  background: var(--panel);
+  border-top: 1px solid var(--line-soft);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--fg-mute);
+}
+.statusbar .seg {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+/* Decorative segs can't shrink (nowrap) — drop the optional ones instead of
+   forcing horizontal scroll on narrow screens. */
+@media (max-width: 720px) {
+  .statusbar .seg.optional,
+  .statusbar .seg.optional + .sep,
+  .statusbar .sep:has(+ .seg.optional) {
+    display: none;
+  }
+}
+.statusbar .seg .key {
+  color: var(--accent);
+}
+.statusbar .sep {
+  color: var(--line);
+}
+.statusbar .pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* ── Hero (Geist poster) ─────────────────────────────────── */
+/* The splash page's auto-generated title h1 duplicates the hero poster —
+   keep it for the a11y tree / skip link target, hide it visually. */
+main:has(.phosphor-hero) h1#_top {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.phosphor-hero {
+  padding: 24px 0 48px;
+  position: relative;
+}
+.phosphor-hero .frame {
+  position: relative;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+}
+.phosphor-hero .frame::before,
+.phosphor-hero .frame::after,
+.phosphor-hero .corners::before,
+.phosphor-hero .corners::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--accent);
+}
+.phosphor-hero .frame::before {
+  top: -1px;
+  left: -1px;
+  border-right: 0;
+  border-bottom: 0;
+}
+.phosphor-hero .frame::after {
+  bottom: -1px;
+  right: -1px;
+  border-left: 0;
+  border-top: 0;
+}
+.phosphor-hero .corners {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.phosphor-hero .corners::before {
+  top: -1px;
+  right: -1px;
+  border-left: 0;
+  border-bottom: 0;
+}
+.phosphor-hero .corners::after {
+  bottom: -1px;
+  left: -1px;
+  border-right: 0;
+  border-top: 0;
+}
+
+.phosphor-hero .meta-top,
+.phosphor-hero .meta-bot {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 14px 22px;
+}
+.phosphor-hero .meta-top {
+  border-bottom: 1px solid var(--line-soft);
+}
+.phosphor-hero .meta-bot {
+  border-top: 1px solid var(--line-soft);
+  margin-top: auto;
+}
+.phosphor-hero .meta-top .glyph {
+  color: var(--accent);
+}
+.phosphor-hero .meta-bot .prompt {
+  margin-left: auto;
+}
+
+.phosphor-hero .anchors {
+  --hero-fs: clamp(48px, 8vw, 112px);
+  position: relative;
+  padding: 56px 22px 64px;
+  overflow: hidden;
+}
+.phosphor-hero .anchor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 0;
+  border-top: 1px dashed var(--line);
+  pointer-events: none;
+  font-size: 10px;
+}
+.phosphor-hero .anchor::before {
+  content: attr(data-label);
+  position: absolute;
+  right: 22px;
+  top: -7px;
+  background: var(--bg);
+  padding: 0 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+.phosphor-hero .anchor::after {
+  content: "";
+  position: absolute;
+  left: 22px;
+  top: -3px;
+  width: 5px;
+  height: 5px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+.phosphor-hero .anchor.cap {
+  top: calc(56px + var(--hero-fs) * 0.06);
+}
+.phosphor-hero .anchor.x {
+  top: calc(56px + var(--hero-fs) * 0.3);
+}
+.phosphor-hero .anchor.base {
+  top: calc(56px + var(--hero-fs) * 0.78);
+}
+.phosphor-hero .anchor.desc {
+  top: calc(56px + var(--hero-fs) * 0.96);
+}
+
+.phosphor-hero .poster-h1 {
+  font-family: var(--font-display);
+  font-size: var(--hero-fs);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  margin: 0;
+  color: var(--fg);
+  position: relative;
+  z-index: 1;
+  text-wrap: balance;
+}
+.phosphor-hero .poster-h1 .accent {
+  color: var(--accent);
+}
+.phosphor-hero .poster-h1 .cursor {
+  display: inline-block;
+  width: 0.3em;
+  height: 0.92em;
+  background: var(--accent);
+  vertical-align: -0.06em;
+  margin-left: 4px;
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ── Reduced motion: stop idle CPU on low-power devices ──── */
+@media (prefers-reduced-motion: reduce) {
+  .statusbar .pulse-dot,
+  .phosphor-hero .poster-h1 .cursor {
+    animation: none;
+  }
+}
+
+.phosphor-hero .ctas {
+  padding: 0 22px 24px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .phosphor-hero .anchors {
+    /* Width-safe by construction: longest line is 13ch of ~0.62em-advance
+       mono, padded 22px each side — never wider than the viewport. */
+    --hero-fs: clamp(28px, calc((100vw - 76px) / 8), 72px);
+  }
+  /* Metric labels collide with the headline on narrow screens — keep the
+     dashed guides, drop the captions. */
+  .phosphor-hero .anchor::before {
+    display: none;
+  }
+}
+
+/* ── Buttons ─────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 10px 16px;
+  border: 1px solid var(--line);
+  color: var(--fg);
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    border-color 0.15s;
+}
+.btn:hover {
+  background: var(--line-soft);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.btn.primary {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+.btn.primary:hover {
+  background: color-mix(in srgb, var(--accent) 80%, var(--bg));
+  color: var(--bg);
+}
+.btn:focus-visible,
+.card:focus-visible,
+.post-row:focus-visible,
+.brand-mark:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ── Section header ──────────────────────────────────────── */
+.section-h {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-soft); /* gray-2: keeps WCAG AA on black, unlike fg-mute */
+  margin: 36px 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-h::before {
+  content: "";
+  flex: 0 0 16px;
+  height: 1px;
+  background: var(--accent);
+}
+.section-h::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line-soft);
+}
+
+/* ── Category cards ──────────────────────────────────────── */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.card {
+  position: relative;
+  border: 1px solid var(--line-soft);
+  background: var(--panel);
+  padding: 22px 22px 20px;
+  color: var(--fg);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition:
+    border-color 0.15s,
+    transform 0.15s;
+}
+.card:hover {
+  border-color: var(--accent);
+  transform: translate(-1px, -1px);
+}
+.card:hover::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border: 1px dashed var(--accent);
+  pointer-events: none;
+}
+.card .icon {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.card h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  margin: 0;
+  color: var(--fg);
+  font-weight: 600;
+}
+.card p {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--fg-soft);
+  line-height: 1.5;
+}
+.card .arrow {
+  margin-top: auto;
+  font-family: var(--font-mono);
+  color: var(--fg-soft);
+  font-size: 13px;
+}
+.card:hover .arrow {
+  color: var(--accent);
+}
+
+@media (max-width: 720px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Post rows ───────────────────────────────────────────── */
+.posts {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--line-soft);
+}
+.post-row {
+  display: grid;
+  grid-template-columns: 110px 1fr auto;
+  gap: 24px;
+  padding: 18px 6px;
+  border-bottom: 1px solid var(--line-soft);
+  color: var(--fg);
+  text-decoration: none;
+  align-items: baseline;
+  transition: background 0.12s;
+}
+.post-row:hover {
+  background: var(--line-soft);
+}
+.post-row:hover .pr-title {
+  color: var(--accent);
+}
+.post-row .pr-date {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--fg-mute);
+  font-variant-numeric: tabular-nums;
+}
+.post-row .pr-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--fg);
+  margin: 0 0 4px;
+  line-height: 1.25;
+}
+.post-row .pr-desc {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--fg-soft);
+  margin: 0;
+  line-height: 1.5;
+}
+.post-row .pr-tags {
+  display: flex;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  flex-wrap: wrap;
+}
+.post-row .pr-tags span {
+  color: var(--accent);
+}
+.post-row .pr-tags span::before {
+  content: "#";
+  opacity: 0.6;
+}
+
+@media (max-width: 720px) {
+  .post-row {
+    grid-template-columns: 90px 1fr;
+  }
+  .post-row .pr-tags {
+    grid-column: 2;
+  }
+}

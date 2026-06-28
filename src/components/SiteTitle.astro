@@ -1,0 +1,10 @@
+---
+// Custom site title — brand mark with phosphor glyph + version (from package.json).
+import pkg from '../../package.json';
+---
+
+<a href="/" class="brand-mark">
+	<span class="glyph" aria-hidden="true">▲</span>
+	<span class="name">ratelcode</span>
+	<span class="ver">v{pkg.version}</span>
+</a>

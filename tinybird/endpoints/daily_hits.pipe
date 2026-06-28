@@ -1,0 +1,18 @@
+DESCRIPTION >
+    Daily pageviews (bots excluded by UA keyword) for the last N days.
+    Params: days (default 30)
+
+NODE daily_hits_node
+SQL >
+    %
+    SELECT
+        toDate(timestamp) AS day,
+        count() AS pageviews,
+        countIf(event = 'contact_click') AS contact_clicks
+    FROM analytics_events
+    WHERE timestamp >= now() - INTERVAL {{ Int32(days, 30) }} DAY
+      AND NOT match(lower(user_agent), 'bot|crawl|spider|slurp|headless|lighthouse|monitor|fetch|curl|python|scrapy')
+    GROUP BY day
+    ORDER BY day DESC
+
+TYPE endpoint

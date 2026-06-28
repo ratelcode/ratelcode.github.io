@@ -1,0 +1,32 @@
+---
+import Default from '@astrojs/starlight/components/Footer.astro';
+import pkg from '../../package.json';
+
+const route = Astro.locals.starlightRoute?.id ?? '';
+const displayRoute = route === '' ? 'home' : route;
+
+const lang = Astro.locals.starlightRoute?.lang ?? 'ko';
+const displayLocale = lang.startsWith('en') ? 'en_US.UTF-8' : 'ko_KR.UTF-8';
+
+// Derive versions from package.json so the statusbar never drifts from reality.
+const ver = (range: string) => range.replace(/^[~^]/, '').split('.').slice(0, 2).join('.');
+const astroVer = ver(pkg.dependencies.astro);
+const starlightVer = ver(pkg.dependencies['@astrojs/starlight']);
+---
+
+<Default><slot /></Default>
+
+<div class="site-disclaimer">
+	이 사이트의 모든 글은 개인 견해이며, 소속 조직과 무관합니다. 평가에는 공개
+	모델·공개 벤치마크·본인 소유 장비만 사용합니다.
+</div>
+
+<div class="statusbar" aria-hidden="true">
+	<span class="seg"><span class="pulse-dot"></span><span class="key">●</span> ratelcode@workshop:~$</span>
+	<span class="sep">│</span>
+	<span class="seg"><span class="key">ROUTE</span> /{displayRoute}</span>
+	<span class="sep">│</span>
+	<span class="seg optional"><span class="key">LOCALE</span> {displayLocale}</span>
+	<span class="sep">│</span>
+	<span class="seg optional"><span class="key">BUILD</span> astro-{astroVer} · starlight-{starlightVer}</span>
+</div>

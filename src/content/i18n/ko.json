@@ -1,0 +1,22 @@
+{
+	"starlightBlog.authors.count_one": "{{author}}의 글 {{count}}건",
+	"starlightBlog.authors.count_other": "{{author}}의 글 {{count}}건",
+	"starlightBlog.metrics.readingTime.minutes": " · {{count}}분 읽기",
+	"starlightBlog.metrics.words_one": " · {{count}} 단어",
+	"starlightBlog.metrics.words_other": " · {{count}} 단어",
+	"starlightBlog.pagination.prev": "최신 글",
+	"starlightBlog.pagination.next": "이전 글",
+	"starlightBlog.post.date": "{{date, datetime(dateStyle: medium)}}",
+	"starlightBlog.post.lastUpdate": " · 마지막 수정: <time datetime=\"{{isoDate}}\">{{date, datetime(dateStyle: medium)}}</time>",
+	"starlightBlog.post.draft": "초안",
+	"starlightBlog.post.featured": "추천",
+	"starlightBlog.post.tags": "태그:",
+	"starlightBlog.sidebar.all": "전체 글",
+	"starlightBlog.sidebar.featured": "추천 글",
+	"starlightBlog.sidebar.recent": "최근 글",
+	"starlightBlog.sidebar.tags": "태그",
+	"starlightBlog.sidebar.authors": "저자",
+	"starlightBlog.sidebar.rss": "RSS",
+	"starlightBlog.tags.count_one": "“{{tag}}” 태그가 달린 글 {{count}}건",
+	"starlightBlog.tags.count_other": "“{{tag}}” 태그가 달린 글 {{count}}건"
+}

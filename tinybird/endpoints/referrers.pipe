@@ -1,0 +1,22 @@
+DESCRIPTION >
+    Inbound referrer domains (bots and self-referrals excluded) for the last N days.
+    The leading indicator for GTM: where do readers come from?
+    Params: days (default 30), limit (default 20)
+
+NODE referrers_node
+SQL >
+    %
+    SELECT
+        domain(referrer) AS source,
+        count() AS pageviews
+    FROM analytics_events
+    WHERE event = 'pageview'
+      AND referrer != ''
+      AND domain(referrer) != 'ratelcode.github.io'
+      AND timestamp >= now() - INTERVAL {{ Int32(days, 30) }} DAY
+      AND NOT match(lower(user_agent), 'bot|crawl|spider|slurp|headless|lighthouse|monitor|fetch|curl|python|scrapy')
+    GROUP BY source
+    ORDER BY pageviews DESC
+    LIMIT {{ Int32(limit, 20) }}
+
+TYPE endpoint

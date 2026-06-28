@@ -1,0 +1,15 @@
+DESCRIPTION >
+    Raw analytics events from the site beacon (pageviews + contact clicks).
+    No cookies, no IP, no fingerprinting — only what the beacon sends.
+
+SCHEMA >
+    `timestamp` DateTime `json:$.timestamp`,
+    `event` LowCardinality(String) `json:$.event`,
+    `path` String `json:$.path`,
+    `referrer` String `json:$.referrer`,
+    `lang` LowCardinality(String) `json:$.lang`,
+    `user_agent` String `json:$.user_agent`
+
+ENGINE "MergeTree"
+ENGINE_PARTITION_KEY "toYYYYMM(timestamp)"
+ENGINE_SORTING_KEY "timestamp, event, path"

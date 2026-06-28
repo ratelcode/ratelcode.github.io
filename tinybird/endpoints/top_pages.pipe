@@ -1,0 +1,20 @@
+DESCRIPTION >
+    Most viewed paths (bots excluded) for the last N days.
+    Params: days (default 30), limit (default 20)
+
+NODE top_pages_node
+SQL >
+    %
+    SELECT
+        path,
+        count() AS pageviews,
+        uniq(referrer) AS distinct_referrers
+    FROM analytics_events
+    WHERE event = 'pageview'
+      AND timestamp >= now() - INTERVAL {{ Int32(days, 30) }} DAY
+      AND NOT match(lower(user_agent), 'bot|crawl|spider|slurp|headless|lighthouse|monitor|fetch|curl|python|scrapy')
+    GROUP BY path
+    ORDER BY pageviews DESC
+    LIMIT {{ Int32(limit, 20) }}
+
+TYPE endpoint
