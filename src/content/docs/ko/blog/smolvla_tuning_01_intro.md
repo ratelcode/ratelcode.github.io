@@ -39,14 +39,14 @@ zero-shot에서는 팔도 들지 못했습니다(2편). 이후 정규화 교체(
 | 9 | 같은쪽만 | 다양성0 암기 | 진단+@check | 71도중 8도폭(0.059) |
 
 ## 8편 목차 (각 편은 독립적으로 읽힘)
-2. [정규화 프레임 불일치](./smolvla_tuning_02_norm_frame_ko.md) — 통계가 SO-100 프레임에 박혀 있어서 좌표가 점프했습니다. 한 줄 교체로 SR 0이 살아났습니다.
-3. [카메라 슬롯 함정](./smolvla_tuning_03_camera_slot_ko.md) — freeze 원인은 camera3를 채우지 않은 것이었습니다. .rrd로 offline 재현해 확정했습니다.
-4. [파인튜닝으로 프레임·스케일 격차 닫기](./smolvla_tuning_04_finetune_ko.md) — FT로 elbow 외삽은 닫았지만 다양성은 풀지 못했습니다. 평가가 곧 학습이라 낮은 잔차가 오히려 충실도일 수 있다는 경고를 남겼습니다.
-5. [팔이 reach만 반복한 이유 — 액션 청크 실행 구간](./smolvla_tuning_05_exec_horizon_ko.md) — 앞 10스텝만 실행한 탓이었습니다. EXEC_STEPS를 10에서 40으로 늘렸습니다.
-6. [실물 안전 장치 — 클램프+과부하 중단](./smolvla_tuning_06_safety_clamp_ko.md) — 분포 클립, 스텝 제한, 과부하 중단으로 3층 가드를 세웠습니다.
-7. [청크 경계 멈칫 없애기 — RTC 비동기](./smolvla_tuning_07_rtc_async_ko.md) — 멈칫을 제거하는 과정에서 버스 크래시, 절반 속도, real_delay=0 버그를 정리했습니다.
-8. [부드러운데 느렸다 — RTC 속도 튜닝](./smolvla_tuning_08_rtc_speed_ko.md) — Hz 상수, 미실측 지연, 항상 0이 되던 버그를 데이터에서 잡았습니다.
-9. [같은 쪽만 잡는다 — 데이터 다양성과 암기](./smolvla_tuning_09_data_diversity_ko.md) — 다양성이 0이라 고정 pose를 암기했습니다. pan 71도 가운데 8도 폭(0.059)에 그쳤습니다.
+2. [정규화 프레임 불일치](./smolvla_tuning_02_norm_frame.md) — 통계가 SO-100 프레임에 박혀 있어서 좌표가 점프했습니다. 한 줄 교체로 SR 0이 살아났습니다.
+3. [카메라 슬롯 함정](./smolvla_tuning_03_camera_slot.md) — freeze 원인은 camera3를 채우지 않은 것이었습니다. .rrd로 offline 재현해 확정했습니다.
+4. [파인튜닝으로 프레임·스케일 격차 닫기](./smolvla_tuning_04_finetune.md) — FT로 elbow 외삽은 닫았지만 다양성은 풀지 못했습니다. 평가가 곧 학습이라 낮은 잔차가 오히려 충실도일 수 있다는 경고를 남겼습니다.
+5. [팔이 reach만 반복한 이유 — 액션 청크 실행 구간](./smolvla_tuning_05_exec_horizon.md) — 앞 10스텝만 실행한 탓이었습니다. EXEC_STEPS를 10에서 40으로 늘렸습니다.
+6. [실물 안전 장치 — 클램프+과부하 중단](./smolvla_tuning_06_safety_clamp.md) — 분포 클립, 스텝 제한, 과부하 중단으로 3층 가드를 세웠습니다.
+7. [청크 경계 멈칫 없애기 — RTC 비동기](./smolvla_tuning_07_rtc_async.md) — 멈칫을 제거하는 과정에서 버스 크래시, 절반 속도, real_delay=0 버그를 정리했습니다.
+8. [부드러운데 느렸다 — RTC 속도 튜닝](./smolvla_tuning_08_rtc_speed.md) — Hz 상수, 미실측 지연, 항상 0이 되던 버그를 데이터에서 잡았습니다.
+9. [같은 쪽만 잡는다 — 데이터 다양성과 암기](./smolvla_tuning_09_data_diversity.md) — 다양성이 0이라 고정 pose를 암기했습니다. pan 71도 가운데 8도 폭(0.059)에 그쳤습니다.
 
 ## 회사 적용 (의견)
 개인적으로 실무에 옮긴다면 다음을 챙기겠습니다.
@@ -56,4 +56,4 @@ zero-shot에서는 팔도 들지 못했습니다(2편). 이후 정규화 교체(
 - 3층 가드와 RTC는 form-factor와 무관하게 이식할 수 있다고 봅니다.
 - 수집 다양성은 @check로 잡습니다.
 
-> 다음: [2편 — 정규화 프레임 불일치](./smolvla_tuning_02_norm_frame_ko.md)
+> 다음: [2편 — 정규화 프레임 불일치](./smolvla_tuning_02_norm_frame.md)

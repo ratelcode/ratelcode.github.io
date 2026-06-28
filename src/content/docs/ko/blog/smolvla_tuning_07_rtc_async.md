@@ -20,7 +20,7 @@ tags:
 - 버스는 메인 루프 전용으로 두고, 예측 스레드는 버스를 직접 만지지 않고 캐시(`latest_obs`)만 읽도록 정리했습니다.
 - 결과는 청크 경계 멈칫 제거, 그리고 버스 크래시 없음(`aborted=null`, `torque_off_verified=true`)입니다.
 
-> 이 글은 구조(비동기 + 버스) 편입니다. 비동기로 바꾼 뒤 따로 드러난 속도 문제(절반 속도, 지연 과소설계, `real_delay` 버그)는 [8편](./smolvla_tuning_08_rtc_speed_ko.md)에서 전담해 다룹니다.
+> 이 글은 구조(비동기 + 버스) 편입니다. 비동기로 바꾼 뒤 따로 드러난 속도 문제(절반 속도, 지연 과소설계, `real_delay` 버그)는 [8편](./smolvla_tuning_08_rtc_speed.md)에서 전담해 다룹니다.
 
 ---
 
@@ -94,7 +94,7 @@ with obs_lock:
 | 버스 동시접근 | `ConnectionError: Port is in use` 크래시 | 크래시 없음 | 커밋 `c3efc0b` |
 | 안전 종료 | — | `aborted=null`, `torque_off_verified=true` | `reports/...rtc_so101_ft_v0.json` |
 
-> 재생 속도, 지연, 큐 관련 정량 수치(`pred_ms_p95`, `measured_delays`, `queue_starved_steps` 등)는 비동기로 바꾼 뒤에 드러난 별도 문제라서 [8편](./smolvla_tuning_08_rtc_speed_ko.md)에서 다룹니다. 이 글의 결과는 "멈칫 제거 + 크래시 제거"까지입니다.
+> 재생 속도, 지연, 큐 관련 정량 수치(`pred_ms_p95`, `measured_delays`, `queue_starved_steps` 등)는 비동기로 바꾼 뒤에 드러난 별도 문제라서 [8편](./smolvla_tuning_08_rtc_speed.md)에서 다룹니다. 이 글의 결과는 "멈칫 제거 + 크래시 제거"까지입니다.
 
 ---
 
@@ -112,6 +112,6 @@ with obs_lock:
 
 ## 시리즈 내비
 
-- 이전 글: [실물 로봇 안전 장치 — 상대목표 클램프 + 과부하 자동중단](./smolvla_tuning_06_safety_clamp_ko.md) (6/9)
-- 다음 글: [부드러운데 느렸다 — RTC 속도 튜닝 3가지 (절반속도 버그 포함)](./smolvla_tuning_08_rtc_speed_ko.md) (8/9)
-- 시리즈 지도: [SmolVLA 실기 튜닝 여정 (시리즈 지도)](./smolvla_tuning_01_intro_ko.md)
+- 이전 글: [실물 로봇 안전 장치 — 상대목표 클램프 + 과부하 자동중단](./smolvla_tuning_06_safety_clamp.md) (6/9)
+- 다음 글: [부드러운데 느렸다 — RTC 속도 튜닝 3가지 (절반속도 버그 포함)](./smolvla_tuning_08_rtc_speed.md) (8/9)
+- 시리즈 지도: [SmolVLA 실기 튜닝 여정 (시리즈 지도)](./smolvla_tuning_01_intro.md)

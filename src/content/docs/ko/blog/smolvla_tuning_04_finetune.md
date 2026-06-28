@@ -164,7 +164,7 @@ ML/로봇 파이프라인에 이 기법을 옮길 때 점검할 항목을 정리
 
 ## 시리즈 내비
 
-- 이전 글: [2개 카메라로 학습했는데 정책이 멈춘 이유 — 카메라 슬롯 함정](./smolvla_tuning_03_camera_slot_ko.md)
-- 다음 글: [팔이 reach만 반복하고 안 들렸던 이유 — 액션 청크 실행 구간](./smolvla_tuning_05_exec_horizon_ko.md)
+- 이전 글: [2개 카메라로 학습했는데 정책이 멈춘 이유 — 카메라 슬롯 함정](./smolvla_tuning_03_camera_slot.md)
+- 다음 글: [팔이 reach만 반복하고 안 들렸던 이유 — 액션 청크 실행 구간](./smolvla_tuning_05_exec_horizon.md)
 
 > 원본 학습 노트: `docs/learning/m7w3_smolvla_finetune.md` · 측정 raw: `workbench/reports/svla_compare_base_vs_ft.json`

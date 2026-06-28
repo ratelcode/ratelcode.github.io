@@ -160,5 +160,5 @@ M7W4 효율화 리뷰에서 "Present_Load read를 N스텝마다로 줄여 critic
 
 ## 시리즈 내비
 
-- 이전 글: [팔이 reach만 반복하고 안 들렸던 이유 — 액션 청크 실행 구간](./smolvla_tuning_05_exec_horizon_ko.md)
-- 다음 글: [청크 경계 멈칫 없애기 — RTC 비동기 추론 구조](./smolvla_tuning_07_rtc_async_ko.md)
+- 이전 글: [팔이 reach만 반복하고 안 들렸던 이유 — 액션 청크 실행 구간](./smolvla_tuning_05_exec_horizon.md)
+- 다음 글: [청크 경계 멈칫 없애기 — RTC 비동기 추론 구조](./smolvla_tuning_07_rtc_async.md)
