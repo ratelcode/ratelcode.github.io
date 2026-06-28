@@ -1,7 +1,7 @@
 ---
-title: 평가 리그 (SO-101)
-description: 어떤 장비로 재는가 — 로봇 암, 카메라, 호스트, 환경 통제.
+title: Test rig (SO-101)
+description: The hardware I measure on — robot arm, cameras, host, environment controls.
 ---
 
-준비 중인 문서입니다. SO-101 로봇 암과 카메라, 호스트 사양, 환경 통제 조건,
-캘리브레이션 절차를 여기에 정리합니다.
+Work in progress. This page will cover the SO-101 robot arm and cameras, host specs,
+environment controls, and the calibration procedure.

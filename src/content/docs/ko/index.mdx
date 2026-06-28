@@ -1,0 +1,14 @@
+---
+title: ratelcode
+description: 공개 VLA 정책의 실로봇 재현성·silent failure를 측정하는 독립 평가 리포트.
+template: splash
+---
+
+import HomeHero from "../../../components/HomeHero.astro";
+import RecentPosts from "../../../components/RecentPosts.astro";
+
+<HomeHero />
+
+<div class="section-h">$ tail -n 4 ./evals</div>
+
+<RecentPosts limit={4} />

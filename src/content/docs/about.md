@@ -1,45 +1,51 @@
 ---
 title: About
-description: 누가, 왜 이 평가를 하는가 — 저자 소개, 발행 원칙, 문의 채널.
+description: Who runs these evaluations and why — author, publishing principles, contact.
 ---
 
-[ratelcode](https://github.com/ratelcode)입니다. AI·로봇 시스템의 품질과 평가 일을
-해 온 엔지니어이고, 여기서는 공개 VLA/모방학습 정책을 실로봇에서 직접 돌려 본
-재현성 평가 리포트를 개인 명의로 씁니다.
+I'm [ratelcode](https://github.com/ratelcode). I'm an engineer who has worked on the
+quality and evaluation of AI and robotics systems, and here I publish, under my own
+name, reproducibility reports from running open VLA / imitation-learning policies on
+real robots.
 
-## 무엇을 하나
+## What I do
 
-논문이나 벤치마크 표에 적힌 숫자가 실제 로봇에서도 나오는지 확인하는 게 주된 일입니다.
+The main job is checking whether the numbers reported in papers and benchmark tables
+actually hold up on a real robot.
 
-- SmolVLA, π0, ACT 같은 공개 정책의 sim 성공률과 SO-101 실측 성공률을 비교합니다.
-- 같은 조건에서 반복하거나 seed를 바꿨을 때 성공률이 얼마나 흔들리는지 잽니다.
-- 점수에는 안 잡히는 실패(silent failure) 사례를 모아서 공개합니다.
+- I compare the sim success rate and the SO-101 real-world success rate of open policies
+  such as SmolVLA, π0, and ACT.
+- I measure how much the success rate moves when I repeat the same conditions or change
+  the seed.
+- I collect and publish silent failures — failures the score doesn't catch.
 
-측정 방법은 [측정 프로토콜](/methodology/protocol/)에, 장비는
-[평가 리그](/methodology/test-rig/)에 적어 두었습니다. 리포트에는 원시 로그와
-코드, config, seed를 같이 올리니, 제 숫자가 의심스러우면 직접 돌려 보시면 됩니다.
+How I measure is written up in the [evaluation protocol](/methodology/protocol/), and
+the hardware in the [test rig](/methodology/test-rig/). Each report ships with the raw
+logs, code, config, and seeds, so if you doubt my numbers you can run it yourself.
 
-## 발행 원칙
+## Publishing principles
 
-직접 측정한 1차 데이터일 것, 재현에 필요한 아티팩트를 공개할 것, 틀릴 수 있는
-구체적인 주장을 할 것, 부정적 결과도 그대로 낼 것, 틀리면 정정 이력을 남길 것.
-이 다섯 가지를 못 채우는 글은 올리지 않습니다.
-([전체 게이트 보기](/methodology/protocol/#발행-게이트))
+It must be first-hand data I measured myself; the artifacts needed to reproduce it must
+be public; it must make specific, falsifiable claims; negative results go out as-is; and
+corrections leave a visible history. A post that can't meet these five doesn't get
+published.
+([see the full gate](/methodology/protocol/#publication-gate))
 
-AI는 하니스 실행, 로그 파싱, 도표, 번역 같은 노동에 씁니다. 실험 설계와 데이터,
-주장, 그리고 틀렸을 때의 책임은 사람 몫입니다.
+I use AI for labor like running the harness, parsing logs, making charts, and
+translation. Experiment design, the data, the claims, and the responsibility when
+something is wrong are on me.
 
-## 독립성 고지
+## Independence
 
-- 이 사이트의 글은 전부 개인 견해이고, 소속 조직과는 무관합니다.
-- 평가에는 공개 모델, 공개 벤치마크, 제 소유 장비만 씁니다.
-- 평가 대상 쪽에서 돈이나 편의를 받은 경우 해당 리포트에 명시합니다.
-  지금까지는 없습니다.
+- Everything here is my personal opinion and unrelated to any organization I belong to.
+- Evaluations use only public models, public benchmarks, and hardware I own.
+- If I receive money or other benefits from a party being evaluated, I state it in that
+  report. So far there have been none.
 
-## 문의
+## Contact
 
-평가 의뢰, 재현 문의, 오류 제보 모두 환영합니다.
+I welcome evaluation requests, reproduction questions, and bug reports.
 
-- 이메일: [ratelcodemoon@gmail.com](mailto:ratelcodemoon@gmail.com)
-- GitHub: [@ratelcode](https://github.com/ratelcode) — 이슈/디스커션으로 연락 가능
+- Email: [ratelcodemoon@gmail.com](mailto:ratelcodemoon@gmail.com)
+- GitHub: [@ratelcode](https://github.com/ratelcode) — reach me via issues/discussions
 - RSS: [/blog/rss.xml](/blog/rss.xml)

@@ -40,11 +40,11 @@ export default defineConfig({
 		starlight({
 			title: 'ratelcode',
 			defaultLocale: 'root',
-			// ko is the canonical locale; eval reports are also published under /en/
-			// for the global LeRobot/VLA community (GTM 09 §3 — inbound credibility).
+			// en is the default locale (served at the root) for the global LeRobot/VLA
+			// community; Korean is published under /ko/ (GTM 09 §3 — inbound credibility).
 			locales: {
-				root: { label: '한국어', lang: 'ko' },
-				en: { label: 'English', lang: 'en' },
+				root: { label: 'English', lang: 'en' },
+				ko: { label: '한국어', lang: 'ko' },
 			},
 			// Show git-based "last updated" on every page — reports get corrected,
 			// and visible revision dates are part of the reproducibility promise.
@@ -75,14 +75,14 @@ export default defineConfig({
 			],
 			sidebar: [
 				{
-					label: '방법론',
-					translations: { en: 'Methodology' },
+					label: 'Methodology',
+					translations: { ko: '방법론' },
 					items: [
-						{ label: '측정 프로토콜', translations: { en: 'Evaluation protocol' }, slug: 'methodology/protocol' },
-						{ label: '평가 리그 (SO-101)', translations: { en: 'Test rig (SO-101)' }, slug: 'methodology/test-rig' },
+						{ label: 'Evaluation protocol', translations: { ko: '측정 프로토콜' }, slug: 'methodology/protocol' },
+						{ label: 'Test rig (SO-101)', translations: { ko: '평가 리그 (SO-101)' }, slug: 'methodology/test-rig' },
 					],
 				},
-				{ label: 'About', slug: 'about' },
+				{ label: 'About', translations: { ko: '소개' }, slug: 'about' },
 			],
 		}),
 	],
