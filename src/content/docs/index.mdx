@@ -9,35 +9,6 @@ import RecentPosts from "../../components/RecentPosts.astro";
 
 <HomeHero />
 
-<div class="section-h">$ ls ./topics</div>
-
-<div class="cards">
-  <a class="card" href="/blog/tags/evals/">
-    <div class="icon">[01] · evals/</div>
-    <h3>Sim vs Real 재현성</h3>
-    <p>같은 정책의 시뮬 성공률과 SO-101 실측 성공률이 얼마나 벌어지는지 측정합니다.</p>
-    <div class="arrow">read evals →</div>
-  </a>
-  <a class="card" href="/blog/tags/failure-modes/">
-    <div class="icon">[02] · failure-modes/</div>
-    <h3>Silent Failures</h3>
-    <p>점수에 안 잡히는 실패를 기록합니다. 재현성 분산, seed 민감도, 평가 왜곡 사례.</p>
-    <div class="arrow">read evals →</div>
-  </a>
-  <a class="card" href="/methodology/protocol/">
-    <div class="icon">[03] · methodology/</div>
-    <h3>측정 프로토콜 & 리그</h3>
-    <p>측정 항목, 통제 변수, 발행 게이트. 환경과 seed, 원시 로그를 전부 공개합니다.</p>
-    <div class="arrow">$ cat protocol →</div>
-  </a>
-  <a class="card" href="/about/">
-    <div class="icon">[04] · about/</div>
-    <h3>누가, 왜</h3>
-    <p>저자 소개, 발행 원칙, 독립성 고지, 문의 채널.</p>
-    <div class="arrow">$ whoami →</div>
-  </a>
-</div>
-
 <div class="section-h">$ tail -n 4 ./evals</div>
 
 <RecentPosts limit={4} />
