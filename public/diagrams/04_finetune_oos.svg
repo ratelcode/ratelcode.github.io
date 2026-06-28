@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 500" width="100%" role="img" aria-labelledby="ttl desc">
+  <title id="ttl">파인튜닝 = 예측을 시연 범위 안으로</title>
+  <desc id="desc">회색 띠는 사람이 시연한 동작 범위(envelope)입니다. 파인튜닝 전 base 정책은 예측(빨강 점)이 띠 밖으로 74% 벗어났지만, 30ep 파인튜닝 후에는 예측(초록 점)이 0.1%만 벗어나 대부분 띠 안에 모였습니다.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="880" height="500" rx="16" fill="#f8fafc" stroke="#e2e8f0"/>
+
+  <!-- 제목 -->
+  <text x="28" y="42" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="21" font-weight="700" fill="#0f172a">파인튜닝 = 예측을 시연 범위 안으로</text>
+
+  <!-- ===== 위 띠: before / base ===== -->
+  <text x="140" y="100" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="14" font-weight="600" fill="#dc2626">base zero-shot: out-of-support 74% (elbow MAE 99.55°)</text>
+
+  <rect x="140" y="170" width="600" height="40" rx="6" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="140" y="228" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="12" fill="#64748b">min</text>
+  <text x="740" y="228" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="12" fill="#64748b">max</text>
+
+  <!-- before 예측 점들 (빨강) — 다수가 띠 밖 -->
+  <circle cx="165" cy="128" r="5" fill="#dc2626"/>
+  <circle cx="204" cy="235" r="5" fill="#dc2626"/>
+  <circle cx="243" cy="140" r="5" fill="#dc2626"/>
+  <circle cx="282" cy="190" r="5" fill="#dc2626"/>
+  <circle cx="321" cy="125" r="5" fill="#dc2626"/>
+  <circle cx="360" cy="240" r="5" fill="#dc2626"/>
+  <circle cx="399" cy="188" r="5" fill="#dc2626"/>
+  <circle cx="438" cy="132" r="5" fill="#dc2626"/>
+  <circle cx="477" cy="245" r="5" fill="#dc2626"/>
+  <circle cx="516" cy="145" r="5" fill="#dc2626"/>
+  <circle cx="555" cy="230" r="5" fill="#dc2626"/>
+  <circle cx="594" cy="195" r="5" fill="#dc2626"/>
+  <circle cx="633" cy="130" r="5" fill="#dc2626"/>
+  <circle cx="672" cy="238" r="5" fill="#dc2626"/>
+  <circle cx="711" cy="150" r="5" fill="#dc2626"/>
+
+  <!-- 파인튜닝 화살표 -->
+  <line x1="86" y1="200" x2="86" y2="390" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="50" y="300" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="14" font-weight="600" fill="#475569" transform="rotate(-90 50 300)">파인튜닝(FT)</text>
+
+  <!-- ===== 아래 띠: after / FT ===== -->
+  <text x="140" y="320" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="14" font-weight="600" fill="#16a34a">30ep 파인튜닝 후: 0.1% (elbow MAE 4.71°)</text>
+
+  <rect x="140" y="370" width="600" height="40" rx="6" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="140" y="428" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="12" fill="#64748b">min</text>
+  <text x="740" y="428" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="12" fill="#64748b">max</text>
+
+  <!-- after 예측 점들 (초록) — 대부분 띠 안 -->
+  <circle cx="165" cy="388" r="5" fill="#16a34a"/>
+  <circle cx="204" cy="382" r="5" fill="#16a34a"/>
+  <circle cx="243" cy="395" r="5" fill="#16a34a"/>
+  <circle cx="282" cy="379" r="5" fill="#16a34a"/>
+  <circle cx="321" cy="392" r="5" fill="#16a34a"/>
+  <circle cx="360" cy="384" r="5" fill="#16a34a"/>
+  <circle cx="399" cy="398" r="5" fill="#16a34a"/>
+  <circle cx="438" cy="386" r="5" fill="#16a34a"/>
+  <circle cx="477" cy="381" r="5" fill="#16a34a"/>
+  <circle cx="516" cy="397" r="5" fill="#16a34a"/>
+  <circle cx="555" cy="383" r="5" fill="#16a34a"/>
+  <circle cx="594" cy="390" r="5" fill="#16a34a"/>
+  <circle cx="633" cy="385" r="5" fill="#16a34a"/>
+  <circle cx="672" cy="393" r="5" fill="#16a34a"/>
+  <circle cx="711" cy="356" r="5" fill="#16a34a"/>
+
+  <!-- 범례 -->
+  <text x="440" y="468" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="13" fill="#64748b">회색 띠 = 사람이 시연으로 보여준 동작 범위. 띠 밖 점 = 시연에 없던 예측(out-of-support).</text>
+</svg>

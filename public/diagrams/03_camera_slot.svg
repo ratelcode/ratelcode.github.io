@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 350" width="100%" role="img" aria-labelledby="ttl desc">
+  <title id="ttl">카메라 슬롯 함정 — 빈 슬롯은 zeros로</title>
+  <desc id="desc">SmolVLA 입력은 이미지 슬롯 3개를 기대한다. camera3을 빼면 입력 스키마가 깨져 freeze(shoulder_lift +4도), camera3을 zeros로 채우면 정상 동작(shoulder_lift +87도)이 나온다.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="880" height="350" rx="16" fill="#f8fafc" stroke="#e2e8f0"/>
+
+  <text x="32" y="40" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="21" font-weight="700" fill="#0f172a">카메라 슬롯 함정 — 빈 슬롯은 zeros로</text>
+  <text x="32" y="63" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="13" fill="#64748b">모델 입력 = 이미지 슬롯 3개 [camera1][camera2][camera3] 를 기대</text>
+
+  <!-- BEFORE row -->
+  <text x="32" y="96" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="15" font-weight="600" fill="#dc2626">(1) 2캠만 연결 (before)</text>
+
+  <rect x="32" y="104" width="105" height="58" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="84" y="130" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="14" font-weight="600" fill="#1e293b">camera1</text>
+  <text x="84" y="149" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="12" fill="#64748b">top</text>
+
+  <rect x="149" y="104" width="105" height="58" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="201" y="130" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="14" font-weight="600" fill="#1e293b">camera2</text>
+  <text x="201" y="149" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="12" fill="#64748b">wrist</text>
+
+  <rect x="266" y="104" width="105" height="58" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="318" y="130" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="14" font-weight="600" fill="#dc2626">camera3</text>
+  <text x="318" y="149" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="12" fill="#dc2626">빈칸(누락)</text>
+
+  <line x1="380" y1="133" x2="430" y2="133" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="440" y="106" width="408" height="54" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="644" y="130" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="14" font-weight="600" fill="#1e293b">입력 스키마 깨짐 → freeze</text>
+  <text x="644" y="149" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="13" fill="#dc2626">shoulder_lift +4°</text>
+
+  <!-- AFTER row -->
+  <text x="32" y="216" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="15" font-weight="600" fill="#16a34a">(2) camera3 = zeros 채움 (after)</text>
+
+  <rect x="32" y="224" width="105" height="58" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="84" y="250" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="14" font-weight="600" fill="#1e293b">camera1</text>
+  <text x="84" y="269" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="12" fill="#64748b">top</text>
+
+  <rect x="149" y="224" width="105" height="58" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="201" y="250" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="14" font-weight="600" fill="#1e293b">camera2</text>
+  <text x="201" y="269" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="12" fill="#64748b">wrist</text>
+
+  <rect x="266" y="224" width="105" height="58" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="318" y="250" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="14" font-weight="600" fill="#16a34a">camera3</text>
+  <text x="318" y="269" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="12" fill="#16a34a">zeros로 채움</text>
+
+  <line x1="380" y1="253" x2="430" y2="253" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="440" y="226" width="408" height="54" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="644" y="250" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="14" font-weight="600" fill="#1e293b">정상 동작 (전 구간 완주)</text>
+  <text x="644" y="269" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="13" fill="#16a34a">shoulder_lift +87°</text>
+
+  <text x="32" y="320" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="13" fill="#64748b">빠진 슬롯 한 칸 = 입력 텐서 한 칸 누락. 모델은 거의 무동작을 출력합니다.</text>
+</svg>

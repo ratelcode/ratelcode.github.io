@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 410" width="100%" role="img" aria-labelledby="ttl desc">
+  <title id="ttl">같은 출력, 다른 복원 통계로 좌표가 점프하는 과정</title>
+  <desc id="desc">정책의 정규화 출력은 동일하지만, SO-100 통계로 복원하면 좌표가 점프해 시작점 잔차가 232.7이 되고, 우리 데이터 통계로 복원하면 올바른 좌표가 되어 잔차가 105.8로 줄어든다.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="880" height="410" rx="16" fill="#f8fafc" stroke="#e2e8f0"/>
+
+  <text x="32" y="40" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="21" font-weight="700" fill="#0f172a">같은 출력, 다른 복원 통계 → 좌표 점프</text>
+
+  <!-- 정책 출력 (정규화 공간) -->
+  <rect x="330" y="60" width="220" height="52" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="440" y="84" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="15" font-weight="600" fill="#1e293b">정책 출력<tspan x="440" dy="1.3em" font-size="12" font-weight="400" fill="#64748b">(정규화 공간 값)</tspan></text>
+
+  <!-- 아래 화살표 + 복원식 -->
+  <line x1="440" y1="112" x2="440" y2="148" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="466" y="138" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="13" font-weight="600" fill="#d97706">로봇 좌표 = 출력 × std + mean</text>
+
+  <!-- 분기점 -->
+  <circle cx="440" cy="150" r="3.5" fill="#64748b"/>
+  <line x1="440" y1="151" x2="302" y2="184" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="440" y1="151" x2="342" y2="324" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 위쪽: SO-100 통계로 복원 (문제) -->
+  <rect x="70" y="185" width="290" height="60" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="215" y="211" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="14" font-weight="600" fill="#1e293b">SO-100 통계로 복원<tspan x="215" dy="1.35em" font-size="12.5" font-weight="400" fill="#b91c1c">lift mean +125.7°</tspan></text>
+
+  <line x1="360" y1="215" x2="470" y2="215" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="470" y="185" width="355" height="60" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="647" y="211" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="14" font-weight="600" fill="#b91c1c">좌표 점프 — 전완 테이블 아래<tspan x="647" dy="1.35em" font-size="13" font-weight="400" fill="#1e293b">시작점 잔차 232.7</tspan></text>
+
+  <!-- 가운데: 같은 출력, 통계만 다름 -->
+  <text x="210" y="290" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="13" fill="#64748b">정규화 출력은 그대로, 복원 통계만 다름</text>
+
+  <!-- 아래쪽: 우리 데이터 통계로 복원 (해결) -->
+  <rect x="70" y="325" width="290" height="60" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="215" y="351" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="14" font-weight="600" fill="#1e293b">우리 데이터 통계로 복원<tspan x="215" dy="1.35em" font-size="12.5" font-weight="400" fill="#15803d">lift mean -27.6°</tspan></text>
+
+  <line x1="360" y1="355" x2="470" y2="355" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="470" y="325" width="355" height="60" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="647" y="351" text-anchor="middle" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif" font-size="14" font-weight="600" fill="#15803d">올바른 좌표<tspan x="647" dy="1.35em" font-size="13" font-weight="400" fill="#1e293b">잔차 105.8</tspan></text>
+</svg>

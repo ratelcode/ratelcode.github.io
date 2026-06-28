@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 440" width="100%" role="img" aria-labelledby="ttl desc">
+  <title id="ttl">제어 Hz = 재생 속도 (fps에 맞춰라)</title>
+  <desc id="desc">같은 50-pose 청크를 제어 주기만 바꿔 소비하는 타임라인 비교. 데이터셋 fps=30 기준선, 제어 15Hz는 두 배 시간이 걸려 0.5x 절반속도, 24Hz는 1.6x, 30Hz=fps면 1.0x native. 제어 카데시를 데이터셋 fps에서 파생한다.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-end">
+      <path d="M0 0 L10 5 L0 10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="880" height="440" rx="16" fill="#f8fafc" stroke="#e2e8f0"/>
+
+  <!-- title -->
+  <text x="28" y="34" font-size="21" font-weight="700" fill="#0f172a" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">제어 Hz = 재생 속도 (fps에 맞춰라)</text>
+  <text x="28" y="56" font-size="13" fill="#64748b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">같은 청크의 앞 7-pose를 제어 Hz만 바꿔 소비 — 오른쪽에서 늦게 끝날수록 느린 재생</text>
+
+  <!-- column separator -->
+  <line x1="200" y1="78" x2="200" y2="312" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- native finish reference line -->
+  <line x1="450" y1="96" x2="450" y2="312" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <text x="450" y="90" text-anchor="middle" font-size="11" fill="#2563eb" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">native 완주선</text>
+
+  <!-- ROW A : dataset fps=30 baseline -->
+  <text x="30" y="106" font-size="14" font-weight="600" fill="#1e40af" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">데이터셋 fps=30</text>
+  <text x="30" y="124" font-size="11" fill="#64748b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">(기록 = 기준속도)</text>
+  <text x="230" y="97" text-anchor="middle" font-size="10" fill="#64748b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">33.3ms</text>
+  <line x1="210" y1="110" x2="450" y2="110" stroke="#93c5fd" stroke-width="3"/>
+  <circle cx="210" cy="110" r="6" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="250" cy="110" r="6" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="290" cy="110" r="6" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="330" cy="110" r="6" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="370" cy="110" r="6" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="410" cy="110" r="6" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="450" cy="110" r="6" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="462" y="114" font-size="13" font-weight="700" fill="#2563eb" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">= 1.0x 기준</text>
+
+  <!-- ROW B : 15Hz before -->
+  <text x="30" y="164" font-size="14" font-weight="600" fill="#dc2626" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">제어 15Hz (before)</text>
+  <text x="30" y="182" font-size="11" fill="#64748b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">66.7ms/step</text>
+  <text x="250" y="155" text-anchor="middle" font-size="10" fill="#64748b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">66.7ms</text>
+  <line x1="210" y1="168" x2="690" y2="168" stroke="#fca5a5" stroke-width="3"/>
+  <circle cx="210" cy="168" r="6" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="290" cy="168" r="6" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="370" cy="168" r="6" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="450" cy="168" r="6" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="530" cy="168" r="6" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="610" cy="168" r="6" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="690" cy="168" r="6" fill="#dc2626" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="700" y="172" font-size="13" font-weight="700" fill="#dc2626" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">0.5x 절반속도</text>
+
+  <!-- ROW C : 24Hz after default -->
+  <text x="30" y="222" font-size="14" font-weight="600" fill="#16a34a" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">제어 24Hz (after)</text>
+  <text x="30" y="240" font-size="11" fill="#64748b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">41.7ms/step</text>
+  <text x="235" y="213" text-anchor="middle" font-size="10" fill="#64748b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">41.7ms</text>
+  <line x1="210" y1="226" x2="510" y2="226" stroke="#86efac" stroke-width="3"/>
+  <circle cx="210" cy="226" r="6" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="260" cy="226" r="6" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="310" cy="226" r="6" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="360" cy="226" r="6" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="410" cy="226" r="6" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="460" cy="226" r="6" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="510" cy="226" r="6" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="522" y="223" font-size="13" font-weight="700" fill="#16a34a" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">1.6x</text>
+  <text x="522" y="238" font-size="10" fill="#64748b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">(15Hz 대비)</text>
+
+  <!-- ROW D : 30Hz = fps native -->
+  <text x="30" y="280" font-size="14" font-weight="600" fill="#16a34a" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">제어 30Hz=fps</text>
+  <text x="30" y="298" font-size="11" fill="#64748b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">33.3ms/step</text>
+  <text x="230" y="271" text-anchor="middle" font-size="10" fill="#64748b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">33.3ms</text>
+  <line x1="210" y1="284" x2="450" y2="284" stroke="#86efac" stroke-width="3"/>
+  <circle cx="210" cy="284" r="6" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="250" cy="284" r="6" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="290" cy="284" r="6" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="330" cy="284" r="6" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="370" cy="284" r="6" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="410" cy="284" r="6" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+  <circle cx="450" cy="284" r="6" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="462" y="288" font-size="13" font-weight="700" fill="#16a34a" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">1.0x native</text>
+
+  <!-- 15Hz halfway annotation -->
+  <text x="456" y="158" font-size="10" fill="#dc2626" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">native가 끝날 때 절반(pose3)</text>
+
+  <!-- time axis hint -->
+  <text x="210" y="320" font-size="11" fill="#64748b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">시간(ms) →  오른쪽에서 늦게 끝날수록 느린 재생</text>
+
+  <!-- key message callout -->
+  <rect x="24" y="332" width="832" height="92" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+  <text x="44" y="358" font-size="15" font-weight="700" fill="#b45309" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">핵심 — 제어 카데시(주기)가 곧 재생 속도</text>
+  <rect x="44" y="372" width="150" height="30" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="119" y="391" text-anchor="middle" font-size="13" fill="#1e40af" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">데이터셋 fps=30</text>
+  <line x1="198" y1="387" x2="236" y2="387" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="217" y="380" text-anchor="middle" font-size="10" fill="#b45309" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">파생</text>
+  <rect x="240" y="372" width="160" height="30" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="320" y="391" text-anchor="middle" font-size="13" fill="#166534" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">제어 Hz 24~30</text>
+  <text x="414" y="391" font-size="13" fill="#1e293b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">→ Hz=fps면 1.0x native, Hz가 절반이면 0.5x</text>
+</svg>

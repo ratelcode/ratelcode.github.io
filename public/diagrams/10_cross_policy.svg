@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 480" width="100%" role="img" aria-labelledby="ttl desc">
+  <title id="ttl">모델 크기와 추론 시간, 그리고 variant 선택에 따른 SR 차이</title>
+  <desc id="desc">왼쪽 패널은 파라미터 9.2배 차이와 forward latency 1.3배 차이를 막대로 비교하고, 오른쪽 패널은 이름이 거의 같은 두 variant가 SR 0%와 100%로 갈리는 것을 보여줍니다.</desc>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <style>
+    text { font-family: 'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif; }
+  </style>
+
+  <!-- background card -->
+  <rect x="0" y="0" width="880" height="480" rx="16" fill="#f8fafc" stroke="#e2e8f0"/>
+
+  <!-- title -->
+  <text x="24" y="38" font-size="21" font-weight="700" fill="#0f172a">모델 크기 ≠ 추론 시간 / variant 선택이 SR을 가른다</text>
+
+  <!-- ===================== LEFT PANEL ===================== -->
+  <rect x="24" y="58" width="410" height="400" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+
+  <!-- (1) parameters -->
+  <text x="44" y="90" font-size="15" font-weight="700" fill="#1e293b">(1) 파라미터 수</text>
+
+  <text x="44" y="120" font-size="13" fill="#64748b">SmolVLA</text>
+  <rect x="150" y="108" width="25" height="18" rx="4" fill="#2563eb"/>
+  <text x="182" y="122" font-size="12" fill="#1e293b">450M</text>
+
+  <text x="44" y="148" font-size="13" fill="#64748b">π0.5</text>
+  <rect x="150" y="136" width="230" height="18" rx="4" fill="#2563eb"/>
+  <text x="384" y="150" font-size="12" font-weight="700" fill="#1e293b">4143M</text>
+
+  <text x="150" y="176" font-size="14" font-weight="700" fill="#d97706">9.2배 차이 (막대 길이가 확 다름)</text>
+
+  <!-- (2) forward latency -->
+  <text x="44" y="210" font-size="15" font-weight="700" fill="#1e293b">(2) forward latency</text>
+
+  <text x="44" y="240" font-size="13" fill="#64748b">SmolVLA</text>
+  <rect x="150" y="228" width="176" height="18" rx="4" fill="#d97706"/>
+  <text x="330" y="242" font-size="12" fill="#1e293b">204ms</text>
+
+  <text x="44" y="268" font-size="13" fill="#64748b">π0.5</text>
+  <rect x="150" y="256" width="230" height="18" rx="4" fill="#d97706"/>
+  <text x="384" y="270" font-size="12" font-weight="700" fill="#1e293b">267ms</text>
+
+  <text x="150" y="296" font-size="14" font-weight="700" fill="#16a34a">1.3배 차이 (막대 길이가 비슷)</text>
+
+  <!-- message box -->
+  <rect x="44" y="316" width="346" height="112" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="217" y="356" font-size="17" font-weight="700" fill="#1e40af" text-anchor="middle">9배 큰 모델인데</text>
+  <text x="217" y="382" font-size="17" font-weight="700" fill="#1e40af" text-anchor="middle">추론은 1.3배만 느림</text>
+  <text x="217" y="410" font-size="12" fill="#3b5bdb" text-anchor="middle">크기와 inference 시간은 비례하지 않음</text>
+
+  <!-- ===================== RIGHT PANEL ===================== -->
+  <rect x="446" y="58" width="410" height="400" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+
+  <text x="466" y="90" font-size="15" font-weight="700" fill="#1e293b">variant 한 끗 차이</text>
+
+  <!-- variant 1: base (red) -->
+  <rect x="466" y="104" width="370" height="100" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="482" y="132" font-size="14" font-weight="700" fill="#1e293b">lerobot/pi05_libero_base</text>
+  <text x="482" y="152" font-size="12" fill="#64748b">multi-embodiment pretrain</text>
+  <rect x="482" y="166" width="190" height="16" rx="4" fill="#ffffff" stroke="#fecaca"/>
+  <text x="688" y="180" font-size="22" font-weight="700" fill="#dc2626">SR 0%</text>
+  <circle cx="806" cy="142" r="18" fill="#dc2626"/>
+  <path d="M798,134 L814,150 M814,134 L798,150" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- center note -->
+  <line x1="521" y1="212" x2="521" y2="248" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="781" y1="212" x2="781" y2="248" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="651" y="234" font-size="14" font-weight="700" fill="#d97706" text-anchor="middle">이름 한 끗 차이, 결과는 정반대</text>
+
+  <!-- variant 2: finetuned (green) -->
+  <rect x="466" y="256" width="370" height="100" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="482" y="284" font-size="13" font-weight="700" fill="#1e293b">lerobot/pi05_libero_finetuned_v044</text>
+  <text x="482" y="304" font-size="12" fill="#64748b">LIBERO finetune 완료</text>
+  <rect x="482" y="318" width="190" height="16" rx="4" fill="#ffffff" stroke="#bbf7d0"/>
+  <rect x="482" y="318" width="190" height="16" rx="4" fill="#16a34a"/>
+  <text x="688" y="332" font-size="22" font-weight="700" fill="#16a34a">SR 100%</text>
+  <circle cx="806" cy="294" r="18" fill="#16a34a"/>
+  <path d="M797,295 L803,302 L816,287" stroke="#ffffff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- footer note -->
+  <text x="651" y="388" font-size="13" fill="#64748b" text-anchor="middle">같은 명령에서 --policy.path 한 줄만 바꾼 결과</text>
+  <text x="651" y="412" font-size="13" font-weight="700" fill="#1e293b" text-anchor="middle">변수 1개로 SR이 100pp 갈림</text>
+</svg>

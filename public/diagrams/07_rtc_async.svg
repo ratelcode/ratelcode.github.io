@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 510" width="100%" role="img" aria-labelledby="ttl desc">
+  <title id="ttl">RTC 비동기: 미리 만들어 큐에 채우기</title>
+  <desc id="desc">위는 동기 추론으로 청크 경계마다 추론하느라 멈칫하는 모습, 아래는 RTC 비동기로 백그라운드 예측 스레드가 미리 만든 액션을 큐에 채우고 메인 제어 루프가 끊김 없이 하나씩 소비하는 구조. 경계는 flow-matching guidance로 blend하고, 단일 시리얼 버스는 메인 루프만 접근한다.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#64748b"/>
+    </marker>
+    <marker id="arrowG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#16a34a"/>
+    </marker>
+    <marker id="arrowB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrowO" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#d97706"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="880" height="510" rx="16" fill="#f8fafc" stroke="#e2e8f0"/>
+
+  <!-- Title -->
+  <text x="24" y="36" font-size="21" font-weight="700" fill="#0f172a" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">RTC 비동기: 미리 만들어 큐에 채우기</text>
+
+  <!-- ===== BEFORE (sync) ===== -->
+  <text x="24" y="70" font-size="15" font-weight="600" fill="#1e293b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">(1) 동기 추론 — 청크를 다 쓰면 멈춰서 다음 청크 추론</text>
+
+  <!-- timeline boxes -->
+  <rect x="24"  y="84" width="96"  height="44" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="72"  y="111" font-size="15" text-anchor="middle" fill="#1e293b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">실행</text>
+
+  <rect x="126" y="84" width="120" height="44" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="186" y="103" font-size="14" text-anchor="middle" fill="#dc2626" font-weight="600" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">멈춤<tspan font-size="11" font-weight="400" dx="2">(추론 중)</tspan></text>
+  <text x="186" y="120" font-size="11" text-anchor="middle" fill="#dc2626" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">수백 ms</text>
+
+  <rect x="252" y="84" width="96"  height="44" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="300" y="111" font-size="15" text-anchor="middle" fill="#1e293b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">실행</text>
+
+  <rect x="354" y="84" width="120" height="44" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="414" y="103" font-size="14" text-anchor="middle" fill="#dc2626" font-weight="600" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">멈춤<tspan font-size="11" font-weight="400" dx="2">(추론 중)</tspan></text>
+  <text x="414" y="120" font-size="11" text-anchor="middle" fill="#dc2626" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">수백 ms</text>
+
+  <rect x="480" y="84" width="96"  height="44" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="528" y="111" font-size="15" text-anchor="middle" fill="#1e293b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">실행</text>
+
+  <text x="600" y="113" font-size="20" fill="#64748b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">···</text>
+
+  <!-- time axis -->
+  <line x1="24" y1="142" x2="636" y2="142" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="646" y="147" font-size="12" fill="#64748b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">시간</text>
+
+  <!-- red callout -->
+  <text x="300" y="170" font-size="14" font-weight="600" text-anchor="middle" fill="#dc2626" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">청크 경계마다 수백 ms 멈칫 (로봇 정지)</text>
+
+  <!-- divider -->
+  <line x1="24" y1="190" x2="856" y2="190" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- ===== AFTER (RTC async) ===== -->
+  <text x="24" y="214" font-size="15" font-weight="600" fill="#1e293b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">(2) RTC 비동기 — 미리 만들어 큐에 채우고, 하나씩 꺼내 끊김 없이 실행</text>
+
+  <!-- prediction thread (blue) -->
+  <rect x="24" y="238" width="180" height="74" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="114" y="270" font-size="15" font-weight="600" text-anchor="middle" fill="#1e293b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">백그라운드 예측 스레드</text>
+  <text x="114" y="291" font-size="12" text-anchor="middle" fill="#64748b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">다음 청크를 미리 추론</text>
+
+  <!-- queue (cells) -->
+  <rect x="252" y="244" width="300" height="68" rx="10" fill="#ffffff" stroke="#64748b" stroke-width="1.5"/>
+  <text x="402" y="262" font-size="13" text-anchor="middle" fill="#64748b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">액션 큐 — 여러 액션 대기</text>
+  <!-- prev chunk cells (darker) -->
+  <rect x="268" y="276" width="26" height="26" rx="4" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.2"/>
+  <rect x="299" y="276" width="26" height="26" rx="4" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.2"/>
+  <rect x="330" y="276" width="26" height="26" rx="4" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.2"/>
+  <!-- new chunk cells (lighter) -->
+  <rect x="367" y="276" width="26" height="26" rx="4" fill="#dcfce7" stroke="#16a34a" stroke-width="1.2"/>
+  <rect x="398" y="276" width="26" height="26" rx="4" fill="#dcfce7" stroke="#16a34a" stroke-width="1.2"/>
+  <rect x="429" y="276" width="26" height="26" rx="4" fill="#dcfce7" stroke="#16a34a" stroke-width="1.2"/>
+  <rect x="460" y="276" width="26" height="26" rx="4" fill="#dcfce7" stroke="#16a34a" stroke-width="1.2"/>
+
+  <!-- main control loop (green) -->
+  <rect x="600" y="238" width="256" height="74" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="728" y="270" font-size="15" font-weight="600" text-anchor="middle" fill="#1e293b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">메인 제어 루프</text>
+  <text x="728" y="291" font-size="12" text-anchor="middle" fill="#16a34a" font-weight="600" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">큐에서 하나씩 소비 — 끊김 없음</text>
+
+  <!-- flow arrows row1 -->
+  <text x="228" y="269" font-size="11" text-anchor="middle" fill="#64748b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">채움</text>
+  <line x1="204" y1="278" x2="250" y2="278" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="576" y="269" font-size="11" text-anchor="middle" fill="#64748b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">소비</text>
+  <line x1="552" y1="278" x2="598" y2="278" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- boundary blend connector -->
+  <line x1="361" y1="302" x2="361" y2="320" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="361" y="336" font-size="13" font-weight="600" text-anchor="middle" fill="#16a34a" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">경계 blend</text>
+  <text x="361" y="352" font-size="11" text-anchor="middle" fill="#64748b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">(flow-matching guidance)</text>
+
+  <!-- ===== cache + bus row ===== -->
+  <!-- latest_obs cache -->
+  <rect x="300" y="398" width="180" height="54" rx="10" fill="#ffffff" stroke="#64748b" stroke-width="1.5"/>
+  <text x="390" y="421" font-size="14" font-weight="600" text-anchor="middle" fill="#1e293b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">latest_obs 캐시</text>
+  <text x="390" y="439" font-size="11" text-anchor="middle" fill="#64748b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">obs 스냅샷</text>
+
+  <!-- single serial bus (orange) -->
+  <rect x="600" y="398" width="256" height="54" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+  <text x="728" y="421" font-size="14" font-weight="600" text-anchor="middle" fill="#1e293b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">단일 시리얼 버스</text>
+  <text x="728" y="439" font-size="12" font-weight="600" text-anchor="middle" fill="#d97706" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">메인 루프만 접근</text>
+
+  <!-- main <-> bus -->
+  <line x1="728" y1="312" x2="728" y2="396" stroke="#d97706" stroke-width="2" marker-start="url(#arrowO)" marker-end="url(#arrowO)"/>
+  <text x="738" y="360" font-size="11" fill="#d97706" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">read / write</text>
+
+  <!-- main -> cache (obs write) -->
+  <line x1="636" y1="312" x2="452" y2="396" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="556" y="352" font-size="11" fill="#64748b" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">obs 기록</text>
+
+  <!-- cache -> prediction thread (read only, dashed) -->
+  <path d="M300,422 C236,422 214,360 192,314" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrowB)"/>
+  <text x="214" y="392" font-size="11" text-anchor="middle" fill="#2563eb" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">캐시만 읽음</text>
+
+  <!-- bottom caption -->
+  <text x="440" y="486" font-size="12" text-anchor="middle" fill="#d97706" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR','Noto Sans CJK KR',sans-serif">예측 스레드는 버스를 직접 만지지 않고 캐시만 읽어 포트 점유 충돌을 피합니다</text>
+</svg>
