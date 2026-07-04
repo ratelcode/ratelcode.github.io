@@ -6,6 +6,9 @@
 
 /* ── Starlight variable overrides ────────────────────────── */
 :root {
+  /* "Noto Sans KR" comes from the @fontsource customCss import (sliced,
+     self-hosted) — not a Fonts API variable like the Geist pair. */
+  --font-noto-kr: "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
   --sl-font:
     var(--font-geist), var(--font-noto-kr), ui-sans-serif, system-ui,
     -apple-system, sans-serif;

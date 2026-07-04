@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@astrojs/starlight": "^0.39.3",
+    "@fontsource/noto-sans-kr": "^5.2.9",
     "astro": "^6.4.4",
     "sharp": "^0.34.5",
     "starlight-blog": "^0.26.1"

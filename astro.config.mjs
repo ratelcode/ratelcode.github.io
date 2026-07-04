@@ -69,14 +69,12 @@ export default defineConfig({
 			weights: [400, 700],
 			fallbacks: ['ui-monospace', 'SF Mono', 'Menlo', 'Consolas', 'monospace'],
 		},
-		{
-			provider: fontProviders.fontsource(),
-			name: 'Noto Sans KR',
-			cssVariable: '--font-noto-kr',
-			weights: [400, 700],
-			fallbacks: ['Apple SD Gothic Neo', 'sans-serif'],
-		},
 	],
+	// Noto Sans KR deliberately does NOT go through the Fonts API: its hangul
+	// slices (~120 unicode-range chunks) would be inlined as ~25KB gzip of
+	// <style> into every page's HTML, re-fetched on each navigation. Importing
+	// the @fontsource CSS via Starlight customCss (see below) keeps the same
+	// self-hosted sliced files in one cacheable external stylesheet instead.
 
 	integrations: [
 		starlight({
@@ -98,7 +96,11 @@ export default defineConfig({
 					href: 'https://github.com/ratelcode/ratelcode.github.io',
 				},
 			],
-			customCss: ['./src/styles/theme.css'],
+			customCss: [
+				'@fontsource/noto-sans-kr/400.css',
+				'@fontsource/noto-sans-kr/700.css',
+				'./src/styles/theme.css',
+			],
 			components: {
 				Head: './src/components/Head.astro',
 				SiteTitle: './src/components/SiteTitle.astro',

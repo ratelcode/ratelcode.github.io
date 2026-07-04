@@ -2,6 +2,15 @@
 // Splash hero — lives in an Astro component (not MDX) so the markup is
 // emitted verbatim: MDX would wrap loose text in <p>, nesting <p> inside
 // the poster and breaking the layout.
+
+// Starlight's header nav (Blog link, social icons) is desktop-only and the
+// splash template has no sidebar/hamburger, so these CTAs are the ONLY
+// navigation on mobile — don't remove them without replacing that role.
+const isKo = Astro.url.pathname.startsWith('/ko/') || Astro.url.pathname === '/ko';
+const base = isKo ? '/ko' : '';
+const t = isKo
+	? { tagline: '독립 로봇 평가', posts: '전체 리포트', method: '측정 프로토콜', about: '소개' }
+	: { tagline: 'independent robot evaluation', posts: 'All reports', method: 'Methodology', about: 'About' };
 ---
 
 <section class="phosphor-hero">
@@ -11,7 +20,7 @@
 		<div class="meta-top">
 			<span><svg class="glyph" viewBox="0 0 128 128" fill="none" aria-hidden="true"><path d="M34 36 66 64 34 92" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" /><rect x="74" y="79" width="34" height="14" rx="3" fill="currentColor" /></svg> ratelcode</span>
 			<span>—</span>
-			<span>independent robot evaluation</span>
+			<span>{t.tagline}</span>
 			<span style="margin-left: auto">SO-101 · real hardware</span>
 		</div>
 
@@ -26,6 +35,12 @@
 				Physical-ai.<br />
 				<span class="accent">evaluate.</span><span class="cursor"></span>
 			</p>
+		</div>
+
+		<div class="ctas">
+			<a class="btn primary" href={`${base}/blog/`}>{t.posts} →</a>
+			<a class="btn" href={`${base}/methodology/protocol/`}>{t.method}</a>
+			<a class="btn" href={`${base}/about/`}>{t.about}</a>
 		</div>
 
 		<div class="meta-bot">
