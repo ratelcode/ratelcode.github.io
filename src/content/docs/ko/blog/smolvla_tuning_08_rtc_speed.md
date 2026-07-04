@@ -143,5 +143,5 @@ queue.merge(norm_chunk, norm_chunk, real_delay=consumed,
 
 ## (끝) 시리즈 내비
 
-- 이전: [청크 경계 멈칫 없애기 — RTC 비동기 추론 구조](./smolvla_tuning_07_rtc_async_ko.md)
-- 다음: [정책이 자꾸 물체 오른쪽을 잡는다 — 데이터 다양성과 암기](./smolvla_tuning_09_data_diversity_ko.md)
+- 이전: [청크 경계 멈칫 없애기 — RTC 비동기 추론 구조](./smolvla_tuning_07_rtc_async.md)
+- 다음: [정책이 자꾸 물체 오른쪽을 잡는다 — 데이터 다양성과 암기](./smolvla_tuning_09_data_diversity.md)

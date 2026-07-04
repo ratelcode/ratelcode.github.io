@@ -118,6 +118,6 @@ camera3을 빼면 실기가 보였던 무동작이 오프라인에서 그대로 
 
 ### 시리즈 내비
 
-- 이전 글: [왜 사전학습 SmolVLA가 팔도 못 들었나 — 정규화 프레임 불일치](./smolvla_tuning_02_norm_frame_ko.md)
-- 다음 글: [파인튜닝으로 프레임·스케일 격차 닫기 — 무엇이 풀리고 무엇이 안 풀리나](./smolvla_tuning_04_finetune_ko.md)
-- 시리즈 지도: [SmolVLA 실기 튜닝 여정 (시리즈 지도)](./smolvla_tuning_01_intro_ko.md)
+- 이전 글: [왜 사전학습 SmolVLA가 팔도 못 들었나 — 정규화 프레임 불일치](./smolvla_tuning_02_norm_frame.md)
+- 다음 글: [파인튜닝으로 프레임·스케일 격차 닫기 — 무엇이 풀리고 무엇이 안 풀리나](./smolvla_tuning_04_finetune.md)
+- 시리즈 지도: [SmolVLA 실기 튜닝 여정 (시리즈 지도)](./smolvla_tuning_01_intro.md)

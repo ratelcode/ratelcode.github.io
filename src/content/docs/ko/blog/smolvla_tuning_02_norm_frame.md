@@ -102,7 +102,7 @@ pred = pred * action_std + action_mean   # SO-100 통계 대신 우리 프레임
 - `ENV_CLIP=1`은 예측을 시연 min~max(stats.json의 action min/max)로 클립하고, 관절별 클립 발동률을 기록합니다(`clip_fraction_per_joint`). 이게 다음 절의 "out-of-support fraction" 지표가 됩니다.
 - 온라인 rollout(`svla_rollout.py`)에는 `unnorm=OURS`에 더해 상대목표 클램프(`max_relative_target=5°/step`, v0 기준), 15Hz, chunk 50 중 앞 10스텝만 실행 후 재예측, 40초 자동 종료를 걸었습니다.
 
-커밋 `bf9ca5e`(2026-06-12)가 `svla_rollout.py`에 안전장치 3종을 넣었습니다. (1) GT envelope 클립, (2) `Present_Load` 과부하 자동중단, (3) 종료 시 torque off 검증입니다. 이 가드들은 실기 출력을 신뢰하기 전의 전제라 이번 정규화 검증부터 끝까지 깔고 갔습니다. 동작 원리나 deg/s 불변 같은 안전 가드의 자세한 설계는 [6편](./smolvla_tuning_06_safety_clamp_ko.md)에서 전담합니다.
+커밋 `bf9ca5e`(2026-06-12)가 `svla_rollout.py`에 안전장치 3종을 넣었습니다. (1) GT envelope 클립, (2) `Present_Load` 과부하 자동중단, (3) 종료 시 torque off 검증입니다. 이 가드들은 실기 출력을 신뢰하기 전의 전제라 이번 정규화 검증부터 끝까지 깔고 갔습니다. 동작 원리나 deg/s 불변 같은 안전 가드의 자세한 설계는 [6편](./smolvla_tuning_06_safety_clamp.md)에서 전담합니다.
 
 > 맥락을 분리해 두면, teleop pan ~25° 틀어짐은 최초 calibration의 homing 자세가 한쪽 팔만 ~25° 돌아간 채 기록된 별개 문제였습니다(노트/셋업 §9). 재캘리브레이션으로 완치됐고 이번 정규화 이슈와는 무관합니다.
 
@@ -152,5 +152,5 @@ cross-embodiment zero-shot 실패는 우리 셋업 결함이 아니라 분야 �
 
 ## 시리즈 내비
 
-- 이전: [SmolVLA 실기 튜닝 여정 — 팔도 못 들던 정책을 부드러운 픽앤플레이스로 (시리즈 지도)](./smolvla_tuning_01_intro_ko.md)
-- 다음: [2개 카메라로 학습했는데 정책이 멈춘 이유 — 카메라 슬롯 함정](./smolvla_tuning_03_camera_slot_ko.md)
+- 이전: [SmolVLA 실기 튜닝 여정 — 팔도 못 들던 정책을 부드러운 픽앤플레이스로 (시리즈 지도)](./smolvla_tuning_01_intro.md)
+- 다음: [2개 카메라로 학습했는데 정책이 멈춘 이유 — 카메라 슬롯 함정](./smolvla_tuning_03_camera_slot.md)

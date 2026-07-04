@@ -195,7 +195,7 @@ audit("lerobot/pi05_libero_base")
 
 7가지 silent failure를 묶어 보면 공통점이 이렇습니다. 첫째, runtime error가 없습니다. pipeline은 정상적으로 끝까지 돌고 exit 0으로 종료됩니다. 둘째, 표면에 드러나는 신호는 SR이나 accuracy 같은 명시적 metric이 깨졌다는 것뿐인데, 정작 왜 깨졌는지에 대한 진단 entry가 없습니다. 셋째, 그래서 외부 사용자가 paper claim을 재현할 때 어디에서 깨지는지를 알 수 없고, 이게 toolkit의 결정적인 외부 가시화 한계라고 봅니다.
 
-eval-kit alpha v0.2의 진입점은 다음과 같습니다 (`docs/blog/cross_policy_smolvla_pi05_ko.md §11`). `variant_audit(repo_id)`는 silent failure 1과 6을 직접 진단하고, `dataset_audit(repo_id)`는 silent failure 2, 3, 4, 5를 자동으로 점검하며, `runners.reproducibility.spike(baseline, rerun)`은 silent failure 7의 host 의존성에 대한 1차 자료를 만듭니다.
+eval-kit alpha v0.2의 진입점은 다음과 같습니다 (`docs/ko/blog/cross_policy_smolvla_pi05.md §11`). `variant_audit(repo_id)`는 silent failure 1과 6을 직접 진단하고, `dataset_audit(repo_id)`는 silent failure 2, 3, 4, 5를 자동으로 점검하며, `runners.reproducibility.spike(baseline, rerun)`은 silent failure 7의 host 의존성에 대한 1차 자료를 만듭니다.
 
 이번 글의 finding에서 끌어낸 v0.3 후보는 이렇습니다. silent failure 7을 위한 `host_compatibility(suite_id, host_ram, host_swap, gpu_vram)`, silent failure 4를 위한 `image_orientation_check(env, dataset)`, 그리고 silent failure 3을 위한 `task_metadata_check(dataset)`(`meta.tasks` lookup)입니다.
 

@@ -1,11 +1,11 @@
 ---
-title: 측정 프로토콜
-description: 무엇을, 어떻게 재는가 — 측정 항목, 통제 변수, 발행 게이트.
+title: Evaluation protocol
+description: What is measured and how — metrics, controlled variables, publishing gates.
 ---
 
-준비 중인 문서입니다. 측정 항목, 통제 변수, 그리고 원시 로그·seed·config를
-어디까지 공개하는지를 여기에 정리합니다.
+Work in progress. This page will define the measured metrics, controlled
+variables, and exactly which raw logs, seeds, and configs get published.
 
-## 발행 게이트
+## Publishing gates
 
-리포트를 올리기 전 충족해야 하는 다섯 가지 조건을 여기에 적습니다. (작성 중)
+The five conditions a report must clear before going up. (Being written.)

@@ -157,8 +157,8 @@ def c_grasp_div(ctx):
 
 ## (끝) 시리즈 내비
 
-- 이전 글: [부드러운데 느렸다 — RTC 속도 튜닝 3가지 (절반속도 버그 포함)](./smolvla_tuning_08_rtc_speed_ko.md)
+- 이전 글: [부드러운데 느렸다 — RTC 속도 튜닝 3가지 (절반속도 버그 포함)](./smolvla_tuning_08_rtc_speed.md)
 - 다음 글: **없음 — 이 글이 시리즈 마지막(9/9)입니다.**
-- 시리즈 지도: [SmolVLA 실기 튜닝 여정 (시리즈 지도)](./smolvla_tuning_01_intro_ko.md)
+- 시리즈 지도: [SmolVLA 실기 튜닝 여정 (시리즈 지도)](./smolvla_tuning_01_intro.md)
 
 원노트: `docs/learning/m7w5_grasp_diversity_recollect.md` · 진단 도구 `workbench/so101/scripts/demo_replay_rerun.py` · 게이트 `workbench/so101/scripts/dataset_gate.py`

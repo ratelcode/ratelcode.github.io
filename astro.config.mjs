@@ -7,6 +7,25 @@ import starlightBlog from 'starlight-blog';
 export default defineConfig({
 	site: 'https://ratelcode.github.io',
 
+	// 2026-07: default locale flipped ko -> en. Old published Korean URLs
+	// (root locale) redirect to their new /ko/ homes; the _ko filename
+	// suffix was dropped so slugs pair across locales for the switcher.
+	redirects: {
+		'/blog/2026-05-09/': '/ko/blog/2026-05-09/',
+		'/blog/cross_policy_smolvla_pi05_ko/': '/ko/blog/cross_policy_smolvla_pi05/',
+		'/blog/lerobot_dataset_silent_failure_ko/': '/ko/blog/lerobot_dataset_silent_failure/',
+		'/blog/smolvla_tuning_01_intro_ko/': '/ko/blog/smolvla_tuning_01_intro/',
+		'/blog/smolvla_tuning_02_norm_frame_ko/': '/ko/blog/smolvla_tuning_02_norm_frame/',
+		'/blog/smolvla_tuning_03_camera_slot_ko/': '/ko/blog/smolvla_tuning_03_camera_slot/',
+		'/blog/smolvla_tuning_04_finetune_ko/': '/ko/blog/smolvla_tuning_04_finetune/',
+		'/blog/smolvla_tuning_05_exec_horizon_ko/': '/ko/blog/smolvla_tuning_05_exec_horizon/',
+		'/blog/smolvla_tuning_06_safety_clamp_ko/': '/ko/blog/smolvla_tuning_06_safety_clamp/',
+		'/blog/smolvla_tuning_07_rtc_async_ko/': '/ko/blog/smolvla_tuning_07_rtc_async/',
+		'/blog/smolvla_tuning_08_rtc_speed_ko/': '/ko/blog/smolvla_tuning_08_rtc_speed/',
+		'/blog/smolvla_tuning_09_data_diversity_ko/': '/ko/blog/smolvla_tuning_09_data_diversity/',
+		'/en/[...slug]': '/[...slug]',
+	},
+
 	prefetch: {
 		prefetchAll: true,
 		defaultStrategy: 'hover',
@@ -40,11 +59,11 @@ export default defineConfig({
 		starlight({
 			title: 'ratelcode',
 			defaultLocale: 'root',
-			// ko is the canonical locale; eval reports are also published under /en/
-			// for the global LeRobot/VLA community (GTM 09 §3 — inbound credibility).
+			// en is the canonical locale (global LeRobot/VLA community);
+			// Korean originals live under /ko/.
 			locales: {
-				root: { label: '한국어', lang: 'ko' },
-				en: { label: 'English', lang: 'en' },
+				root: { label: 'English', lang: 'en' },
+				ko: { label: '한국어', lang: 'ko' },
 			},
 			// Show git-based "last updated" on every page — reports get corrected,
 			// and visible revision dates are part of the reproducibility promise.
@@ -75,11 +94,11 @@ export default defineConfig({
 			],
 			sidebar: [
 				{
-					label: '방법론',
-					translations: { en: 'Methodology' },
+					label: 'Methodology',
+					translations: { ko: '방법론' },
 					items: [
-						{ label: '측정 프로토콜', translations: { en: 'Evaluation protocol' }, slug: 'methodology/protocol' },
-						{ label: '평가 리그 (SO-101)', translations: { en: 'Test rig (SO-101)' }, slug: 'methodology/test-rig' },
+						{ label: 'Evaluation protocol', translations: { ko: '측정 프로토콜' }, slug: 'methodology/protocol' },
+						{ label: 'Test rig (SO-101)', translations: { ko: '평가 리그 (SO-101)' }, slug: 'methodology/test-rig' },
 					],
 				},
 				{ label: 'About', slug: 'about' },

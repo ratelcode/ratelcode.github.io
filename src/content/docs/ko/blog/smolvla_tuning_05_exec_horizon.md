@@ -108,5 +108,5 @@ v0(EXEC_STEPS=10)와 v1(EXEC_STEPS=40)을 비교합니다.
 ---
 
 **시리즈 내비**
-← 이전: [4편 — 파인튜닝으로 프레임·스케일 격차 닫기](./smolvla_tuning_04_finetune_ko.md)
-→ 다음: [6편 — 실물 로봇 안전 장치: 상대목표 클램프 + 과부하 자동중단](./smolvla_tuning_06_safety_clamp_ko.md)
+← 이전: [4편 — 파인튜닝으로 프레임·스케일 격차 닫기](./smolvla_tuning_04_finetune.md)
+→ 다음: [6편 — 실물 로봇 안전 장치: 상대목표 클램프 + 과부하 자동중단](./smolvla_tuning_06_safety_clamp.md)

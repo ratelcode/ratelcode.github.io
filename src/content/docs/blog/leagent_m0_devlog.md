@@ -11,7 +11,7 @@ tags:
   - SmolVLA
 ---
 
-> Development log for my side project [LeAgent](https://github.com/ratelcode/leagent). I try to keep measured/committed facts and my opinions distinguishable at the sentence level. 한국어 버전: [LeAgent 개발기 (M0)](/blog/leagent_m0_devlog_ko/)
+> Development log for my side project [LeAgent](https://github.com/ratelcode/leagent). I try to keep measured/committed facts and my opinions distinguishable at the sentence level. 한국어 버전: [LeAgent 개발기 (M0)](/ko/blog/leagent_m0_devlog/)
 
 > **Terms, one line each**
 > - **LeRobot**: Hugging Face's robotics library — `lerobot-train` / `lerobot-eval` CLIs and the LeRobotDataset v3.0 format.
