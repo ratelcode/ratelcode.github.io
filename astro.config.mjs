@@ -23,7 +23,26 @@ export default defineConfig({
 		'/blog/smolvla_tuning_07_rtc_async_ko/': '/ko/blog/smolvla_tuning_07_rtc_async/',
 		'/blog/smolvla_tuning_08_rtc_speed_ko/': '/ko/blog/smolvla_tuning_08_rtc_speed/',
 		'/blog/smolvla_tuning_09_data_diversity_ko/': '/ko/blog/smolvla_tuning_09_data_diversity/',
-		'/en/[...slug]': '/[...slug]',
+		// Old /en/ URLs (English was a prefixed locale before the flip) —
+		// listed individually; a `/en/[...slug]` wildcard reuses the shared
+		// catch-all route's static paths (including /ko/ ones), which
+		// breaks the build.
+		'/en/': '/',
+		'/en/about/': '/about/',
+		'/en/methodology/protocol/': '/methodology/protocol/',
+		'/en/methodology/test-rig/': '/methodology/test-rig/',
+		'/en/blog/2026-05-09/': '/blog/2026-05-09/',
+		'/en/blog/cross_policy_smolvla_pi05/': '/blog/cross_policy_smolvla_pi05/',
+		'/en/blog/lerobot_dataset_silent_failure/': '/blog/lerobot_dataset_silent_failure/',
+		'/en/blog/smolvla_tuning_01_intro/': '/blog/smolvla_tuning_01_intro/',
+		'/en/blog/smolvla_tuning_02_norm_frame/': '/blog/smolvla_tuning_02_norm_frame/',
+		'/en/blog/smolvla_tuning_03_camera_slot/': '/blog/smolvla_tuning_03_camera_slot/',
+		'/en/blog/smolvla_tuning_04_finetune/': '/blog/smolvla_tuning_04_finetune/',
+		'/en/blog/smolvla_tuning_05_exec_horizon/': '/blog/smolvla_tuning_05_exec_horizon/',
+		'/en/blog/smolvla_tuning_06_safety_clamp/': '/blog/smolvla_tuning_06_safety_clamp/',
+		'/en/blog/smolvla_tuning_07_rtc_async/': '/blog/smolvla_tuning_07_rtc_async/',
+		'/en/blog/smolvla_tuning_08_rtc_speed/': '/blog/smolvla_tuning_08_rtc_speed/',
+		'/en/blog/smolvla_tuning_09_data_diversity/': '/blog/smolvla_tuning_09_data_diversity/',
 	},
 
 	prefetch: {
