@@ -11,7 +11,11 @@ export default defineConfig({
 	// (root locale) redirect to their new /ko/ homes; the _ko filename
 	// suffix was dropped so slugs pair across locales for the switcher.
 	redirects: {
-		'/blog/2026-05-09/': '/ko/blog/2026-05-09/',
+		// Note: /blog/2026-05-09/ is NOT redirected — like /about/ and the
+		// /methodology/* pages, that URL had unsuffixed Korean content
+		// before the flip and now serves the new English translation in
+		// place (a content swap, not a move). Only the _ko-suffixed old
+		// URLs below actually moved.
 		'/blog/cross_policy_smolvla_pi05_ko/': '/ko/blog/cross_policy_smolvla_pi05/',
 		'/blog/lerobot_dataset_silent_failure_ko/': '/ko/blog/lerobot_dataset_silent_failure/',
 		'/blog/smolvla_tuning_01_intro_ko/': '/ko/blog/smolvla_tuning_01_intro/',
