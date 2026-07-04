@@ -5,9 +5,10 @@
 // Layout implements the "Home Final" Claude Design comp (framed poster,
 // subtitle, CTAs; brand mark lives in the Starlight header, not here).
 
-// Starlight's header nav (Blog link, social icons) is desktop-only and the
-// splash template has no sidebar/hamburger, so these CTAs are the ONLY
-// navigation on mobile — don't remove them without replacing that role.
+// The header nav is desktop-only (≥50rem) and the splash template has no
+// sidebar/hamburger, so on mobile these CTAs are the ONLY navigation.
+// Desktop shows just the primary (theme.css hides the secondaries there,
+// where the header nav already covers them) — keep all three in markup.
 const isKo = Astro.url.pathname.startsWith('/ko/') || Astro.url.pathname === '/ko';
 const base = isKo ? '/ko' : '';
 const t = isKo

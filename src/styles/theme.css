@@ -364,6 +364,15 @@ main:has(.phosphor-hero) h1#_top {
   }
 }
 
+/* The header nav (Reports / Methodology / Test rig / About) shows from
+   50rem — there the hero keeps only its primary CTA. Below 50rem that nav
+   is hidden and the secondary buttons are the only path to those pages. */
+@media (min-width: 50rem) {
+  .phosphor-hero .ctas .btn:not(.primary) {
+    display: none;
+  }
+}
+
 /* Mobile CTA stack (design comp): full-width primary, 2-up secondaries. */
 @media (max-width: 720px) {
   .phosphor-hero .ctas {
