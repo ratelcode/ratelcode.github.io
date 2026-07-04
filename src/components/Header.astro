@@ -1,0 +1,151 @@
+---
+// Custom header — the "Home Final" design comp's tagline + nav grafted onto
+// Starlight's default header so search, theme select, and language select
+// all survive. Based on @astrojs/starlight/components/Header.astro.
+import config from 'virtual:starlight/user-config';
+
+import LanguageSelect from 'virtual:starlight/components/LanguageSelect';
+import Search from 'virtual:starlight/components/Search';
+import SiteTitle from 'virtual:starlight/components/SiteTitle';
+import SocialIcons from 'virtual:starlight/components/SocialIcons';
+// Deliberately NOT the virtual: module — starlight-blog overrides ThemeSelect
+// to prepend its own "Blog" link, which would duplicate the nav's "Reports".
+import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
+
+const shouldRenderSearch =
+	config.pagefind || config.components.Search !== '@astrojs/starlight/components/Search.astro';
+
+const lang = Astro.locals.starlightRoute?.lang ?? 'en';
+const isKo = lang.startsWith('ko');
+const base = isKo ? '/ko' : '';
+const tagline = isKo ? '독립 로봇 평가' : 'independent robot evaluation';
+const nav = [
+	{ href: `${base}/blog/`, label: isKo ? '리포트' : 'Reports' },
+	{ href: `${base}/methodology/protocol/`, label: isKo ? '방법론' : 'Methodology' },
+	{ href: `${base}/methodology/test-rig/`, label: isKo ? '평가 리그' : 'Test rig' },
+	{ href: `${base}/about/`, label: isKo ? '소개' : 'About' },
+];
+const path = Astro.url.pathname;
+const isActive = (href: string) => path.startsWith(href);
+---
+
+<div class="header">
+	<div class="title-wrapper sl-flex">
+		<SiteTitle />
+		<span class="site-tagline">{tagline}</span>
+	</div>
+	<div class="sl-flex print:hidden">
+		{shouldRenderSearch && <Search />}
+	</div>
+	<div class="sl-hidden md:sl-flex print:hidden right-group">
+		<nav class="site-nav" aria-label={isKo ? '주 메뉴' : 'Main'}>
+			{nav.map(({ href, label }) => (
+				<a href={href} class:list={[{ active: isActive(href) }]}>{label}</a>
+			))}
+		</nav>
+		<div class="sl-flex social-icons">
+			<SocialIcons />
+		</div>
+		<ThemeSelect />
+		<LanguageSelect />
+	</div>
+</div>
+
+<style>
+	@layer starlight.core {
+		.header {
+			display: flex;
+			gap: var(--sl-nav-gap);
+			justify-content: space-between;
+			align-items: center;
+			height: 100%;
+		}
+
+		.title-wrapper {
+			/* Prevent long titles overflowing and covering the search and menu buttons on narrow viewports. */
+			overflow: clip;
+			/* Avoid clipping focus ring around link inside title wrapper. */
+			padding: 0.25rem;
+			margin: -0.25rem;
+			min-width: 0;
+			align-items: center;
+			gap: 1.25rem;
+		}
+
+		.site-tagline {
+			display: none;
+			font-family: var(--sl-font-mono);
+			font-size: 11px;
+			letter-spacing: 0.06em;
+			text-transform: uppercase;
+			color: var(--sl-color-gray-3);
+			border-inline-start: 1px solid var(--sl-color-hairline);
+			padding-inline-start: 1.25rem;
+			white-space: nowrap;
+		}
+		@media (min-width: 76rem) {
+			.site-tagline {
+				display: inline;
+			}
+		}
+
+		.site-nav {
+			display: flex;
+			align-items: center;
+			gap: 1.25rem;
+		}
+		.site-nav a {
+			font-size: 14px;
+			font-weight: 500;
+			color: var(--sl-color-gray-2);
+			text-decoration: none;
+			white-space: nowrap;
+		}
+		.site-nav a:hover,
+		.site-nav a.active {
+			color: var(--sl-color-text-accent);
+		}
+
+		.right-group,
+		.social-icons {
+			gap: 1rem;
+			align-items: center;
+		}
+		.social-icons::after {
+			content: '';
+			height: 2rem;
+			border-inline-end: 1px solid var(--sl-color-gray-5);
+		}
+
+		@media (min-width: 50rem) {
+			:global(:root[data-has-sidebar]) {
+				--__sidebar-pad: calc(2 * var(--sl-nav-pad-x));
+			}
+			:global(:root:not([data-has-toc])) {
+				--__toc-width: 0rem;
+			}
+			.header {
+				--__sidebar-width: max(0rem, var(--sl-content-inline-start, 0rem) - var(--sl-nav-pad-x));
+				--__main-column-fr: calc(
+					(
+							100% + var(--__sidebar-pad, 0rem) - var(--__toc-width, var(--sl-sidebar-width)) -
+								(2 * var(--__toc-width, var(--sl-nav-pad-x))) - var(--sl-content-inline-start, 0rem) -
+								var(--sl-content-width)
+						) / 2
+				);
+				display: grid;
+				grid-template-columns:
+        /* 1 (site title): runs up until the main content column’s left edge or the width of the title, whichever is the largest  */
+					minmax(
+						calc(var(--__sidebar-width) + max(0rem, var(--__main-column-fr) - var(--sl-nav-gap))),
+						auto
+					)
+					/* 2 (search box): all free space that is available. */
+					1fr
+					/* 3 (right items): use the space that these need. */
+					auto;
+				align-content: center;
+			}
+		}
+	}
+</style>
