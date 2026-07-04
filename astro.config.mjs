@@ -59,14 +59,19 @@ export default defineConfig({
 			provider: fontProviders.fontsource(),
 			name: 'Geist',
 			cssVariable: '--font-geist',
-			weights: [400, 700],
+			// 600 is load-bearing: Starlight styles every content heading
+			// (h1–h6) at font-weight 600 — without the face browsers snap
+			// those to 700.
+			weights: [400, 600, 700],
 			fallbacks: ['ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
 		},
 		{
 			provider: fontProviders.fontsource(),
 			name: 'Geist Mono',
 			cssVariable: '--font-geist-mono',
-			weights: [400, 700],
+			// 600 for the brand mark, card titles, and post-row titles
+			// (--font-display resolves to this mono chain).
+			weights: [400, 600, 700],
 			fallbacks: ['ui-monospace', 'SF Mono', 'Menlo', 'Consolas', 'monospace'],
 		},
 	],
