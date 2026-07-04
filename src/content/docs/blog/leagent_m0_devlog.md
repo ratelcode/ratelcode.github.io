@@ -11,7 +11,7 @@ tags:
   - SmolVLA
 ---
 
-> Development log for my side project [LeAgent](https://github.com/ratelcode/leagent). I try to keep measured/committed facts and my opinions distinguishable at the sentence level. 한국어 버전: [LeAgent 개발기 (M0)](/ko/blog/leagent_m0_devlog/)
+> Development log for my side project [LeAgent](https://github.com/ratelcode/LeAgent). I try to keep measured/committed facts and my opinions distinguishable at the sentence level. 한국어 버전: [LeAgent 개발기 (M0)](/ko/blog/leagent_m0_devlog/)
 
 > **Terms, one line each**
 > - **LeRobot**: Hugging Face's robotics library — `lerobot-train` / `lerobot-eval` CLIs and the LeRobotDataset v3.0 format.
@@ -107,4 +107,4 @@ The loop accumulates data (events, checkpoints) but not lessons. Following Karpa
 
 - As I write this, a full-scale M0 (20k steps/cycle, data 40→80→160 episodes, ~7 h) is running, watched live through the dashboard (`leagent dash` — cycle pipeline, eval chart, rollout videos, event log, knowledge browser).
 - Next: the remaining M1 work (DexFlyWheel-style residual RL, RoboGene-style LLM curation). Real-robot work (M3) waits for lerobot 0.6.0, which fixes CVE-2026-25874 (a pickle RCE in the async-inference gRPC path).
-- Code: [github.com/ratelcode/leagent](https://github.com/ratelcode/leagent) — going public around the time this post goes up.
+- Code: [github.com/ratelcode/LeAgent](https://github.com/ratelcode/LeAgent) — going public around the time this post goes up.

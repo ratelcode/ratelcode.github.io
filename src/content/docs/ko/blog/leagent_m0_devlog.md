@@ -11,7 +11,7 @@ tags:
   - SmolVLA
 ---
 
-> 개인 프로젝트 [LeAgent](https://github.com/ratelcode/leagent)의 개발 기록입니다. 측정·커밋으로 확인한 내용과 제 의견을 문장에서 구분해 적었습니다. English version: [LeAgent devlog (M0)](/blog/leagent_m0_devlog/)
+> 개인 프로젝트 [LeAgent](https://github.com/ratelcode/LeAgent)의 개발 기록입니다. 측정·커밋으로 확인한 내용과 제 의견을 문장에서 구분해 적었습니다. English version: [LeAgent devlog (M0)](/blog/leagent_m0_devlog/)
 
 > **용어 1줄 정리**
 > - **LeRobot**: Hugging Face의 로보틱스 라이브러리입니다. `lerobot-train` / `lerobot-eval` CLI와 LeRobotDataset v3.0 포맷을 제공합니다.
@@ -107,4 +107,4 @@ Orchestrator (Python 상태머신 + SQLite)
 
 - 이 글을 쓰는 시점에 풀스케일 M0(사이클당 20k스텝, 데이터 40→80→160 에피소드, ~7시간)가 돌고 있고, 대시보드(`leagent dash` — 사이클 파이프라인, eval 차트, 롤아웃 영상, 이벤트, 지식 브라우저)로 관전 중입니다.
 - 다음: M1 잔여(DexFlyWheel residual RL, RoboGene식 LLM 큐레이션), 실로봇(M3)은 CVE-2026-25874(async-inference gRPC의 pickle RCE)가 수정되는 lerobot 0.6.0 이후로.
-- 코드: [github.com/ratelcode/leagent](https://github.com/ratelcode/leagent) — 이 글이 올라갈 때쯤 public 전환 예정입니다.
+- 코드: [github.com/ratelcode/LeAgent](https://github.com/ratelcode/LeAgent) — 이 글이 올라갈 때쯤 public 전환 예정입니다.
