@@ -1,11 +1,11 @@
 ---
 title: Evaluation protocol
-description: What is measured and how — metrics, controlled variables, publishing gates.
+description: What I measure and how — metrics, controlled variables, the publication gate.
 ---
 
-Work in progress. This page will define the measured metrics, controlled
-variables, and exactly which raw logs, seeds, and configs get published.
+Work in progress. This page will lay out what I measure, the controlled variables, and
+how far I open up the raw logs, seeds, and config.
 
-## Publishing gates
+## Publication gate
 
-The five conditions a report must clear before going up. (Being written.)
+The five conditions a report must meet before it goes up will be written here. (WIP)

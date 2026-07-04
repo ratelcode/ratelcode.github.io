@@ -1,7 +1,7 @@
 ---
 title: Test rig (SO-101)
-description: What the measurements run on — robot arm, cameras, host, environmental controls.
+description: The hardware I measure on — robot arm, cameras, host, environment controls.
 ---
 
-Work in progress. This page will document the SO-101 robot arm, cameras, host
-specs, environmental controls, and the calibration procedure.
+Work in progress. This page will cover the SO-101 robot arm and cameras, host specs,
+environment controls, and the calibration procedure.

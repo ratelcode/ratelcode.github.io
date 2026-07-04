@@ -59,8 +59,8 @@ export default defineConfig({
 		starlight({
 			title: 'ratelcode',
 			defaultLocale: 'root',
-			// en is the canonical locale (global LeRobot/VLA community);
-			// Korean originals live under /ko/.
+			// en is the default locale (served at the root) for the global LeRobot/VLA
+			// community; Korean is published under /ko/ (GTM 09 §3 — inbound credibility).
 			locales: {
 				root: { label: 'English', lang: 'en' },
 				ko: { label: '한국어', lang: 'ko' },
@@ -101,7 +101,7 @@ export default defineConfig({
 						{ label: 'Test rig (SO-101)', translations: { ko: '평가 리그 (SO-101)' }, slug: 'methodology/test-rig' },
 					],
 				},
-				{ label: 'About', slug: 'about' },
+				{ label: 'About', translations: { ko: '소개' }, slug: 'about' },
 			],
 		}),
 	],

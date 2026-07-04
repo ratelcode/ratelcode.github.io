@@ -118,6 +118,12 @@ body {
   color: var(--accent);
   line-height: 1;
 }
+/* Inline brand glyph rendered as the favicon mark (prompt chevron + cursor). */
+svg.glyph {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+}
 .brand-mark .name {
   color: var(--fg);
 }
