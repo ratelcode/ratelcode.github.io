@@ -11,7 +11,7 @@ tags:
   - SmolVLA
 ---
 
-> 개인 프로젝트 [LeAgent](https://github.com/ratelcode/leagent)의 개발 기록입니다. 측정·커밋으로 확인한 내용과 제 의견을 문장에서 구분해 적었습니다.
+> 개인 프로젝트 [LeAgent](https://github.com/ratelcode/leagent)의 개발 기록입니다. 측정·커밋으로 확인한 내용과 제 의견을 문장에서 구분해 적었습니다. English version: [LeAgent devlog (M0)](/blog/leagent_m0_devlog/)
 
 > **용어 1줄 정리**
 > - **LeRobot**: Hugging Face의 로보틱스 라이브러리입니다. `lerobot-train` / `lerobot-eval` CLI와 LeRobotDataset v3.0 포맷을 제공합니다.
