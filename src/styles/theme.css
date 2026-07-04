@@ -294,55 +294,16 @@ main:has(.phosphor-hero) h1#_top {
   margin-left: auto;
 }
 
-.phosphor-hero .anchors {
-  --hero-fs: clamp(48px, 8vw, 112px);
-  position: relative;
-  padding: 56px 22px 64px;
-  overflow: hidden;
+.phosphor-hero .poster {
+  --hero-fs: clamp(48px, 8vw, 92px);
+  padding: 52px 24px 40px;
 }
-.phosphor-hero .anchor {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 0;
-  border-top: 1px dashed var(--line);
-  pointer-events: none;
-  font-size: 10px;
-}
-.phosphor-hero .anchor::before {
-  content: attr(data-label);
-  position: absolute;
-  right: 22px;
-  top: -7px;
-  background: var(--bg);
-  padding: 0 6px;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--fg-mute);
-}
-.phosphor-hero .anchor::after {
-  content: "";
-  position: absolute;
-  left: 22px;
-  top: -3px;
-  width: 5px;
-  height: 5px;
-  background: var(--accent);
-  border-radius: 50%;
-}
-.phosphor-hero .anchor.cap {
-  top: calc(56px + var(--hero-fs) * 0.06);
-}
-.phosphor-hero .anchor.x {
-  top: calc(56px + var(--hero-fs) * 0.3);
-}
-.phosphor-hero .anchor.base {
-  top: calc(56px + var(--hero-fs) * 0.78);
-}
-.phosphor-hero .anchor.desc {
-  top: calc(56px + var(--hero-fs) * 0.96);
+.phosphor-hero .hero-sub {
+  margin: 24px 0 0;
+  max-width: 560px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--fg-soft);
 }
 
 .phosphor-hero .poster-h1 {
@@ -362,11 +323,11 @@ main:has(.phosphor-hero) h1#_top {
 }
 .phosphor-hero .poster-h1 .cursor {
   display: inline-block;
-  width: 0.3em;
-  height: 0.92em;
+  width: 0.28em;
+  height: 0.9em;
   background: var(--accent);
   vertical-align: -0.06em;
-  margin-left: 4px;
+  margin-left: 5px;
   animation: blink 1s steps(1) infinite;
 }
 @keyframes blink {
@@ -384,22 +345,38 @@ main:has(.phosphor-hero) h1#_top {
 }
 
 .phosphor-hero .ctas {
-  padding: 0 22px 24px;
+  padding: 0 24px 26px;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
 }
 
 @media (max-width: 900px) {
-  .phosphor-hero .anchors {
+  .phosphor-hero .poster {
     /* Width-safe by construction: longest line is 13ch of ~0.62em-advance
-       mono, padded 22px each side — never wider than the viewport. */
-    --hero-fs: clamp(28px, calc((100vw - 76px) / 8), 72px);
+       mono, padded 24px each side — never wider than the viewport. */
+    --hero-fs: clamp(28px, calc((100vw - 80px) / 8), 72px);
+    padding: 30px 16px 24px;
   }
-  /* Metric labels collide with the headline on narrow screens — keep the
-     dashed guides, drop the captions. */
-  .phosphor-hero .anchor::before {
-    display: none;
+  .phosphor-hero .hero-sub {
+    margin-top: 14px;
+    font-size: 14px;
+  }
+}
+
+/* Mobile CTA stack (design comp): full-width primary, 2-up secondaries. */
+@media (max-width: 720px) {
+  .phosphor-hero .ctas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 16px 18px;
+  }
+  .phosphor-hero .ctas .btn {
+    justify-content: center;
+    min-height: 46px;
+  }
+  .phosphor-hero .ctas .btn.primary {
+    grid-column: 1 / -1;
   }
 }
 
@@ -466,139 +443,211 @@ main:has(.phosphor-hero) h1#_top {
   flex: 1;
   height: 1px;
   background: var(--line-soft);
+  order: 1;
 }
-
-/* ── Category cards ──────────────────────────────────────── */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-}
-.card {
-  position: relative;
-  border: 1px solid var(--line-soft);
-  background: var(--panel);
-  padding: 22px 22px 20px;
-  color: var(--fg);
+.section-h .sh-link {
+  order: 2;
+  font-size: 11px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--fg-mute);
   text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  transition:
-    border-color 0.15s,
-    transform 0.15s;
+  white-space: nowrap;
 }
-.card:hover {
-  border-color: var(--accent);
-  transform: translate(-1px, -1px);
-}
-.card:hover::after {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  border: 1px dashed var(--accent);
-  pointer-events: none;
-}
-.card .icon {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--accent);
-  margin-bottom: 4px;
-}
-.card h3 {
-  font-family: var(--font-display);
-  font-size: 18px;
-  margin: 0;
-  color: var(--fg);
-  font-weight: 600;
-}
-.card p {
-  margin: 0;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--fg-soft);
-  line-height: 1.5;
-}
-.card .arrow {
-  margin-top: auto;
-  font-family: var(--font-mono);
-  color: var(--fg-soft);
-  font-size: 13px;
-}
-.card:hover .arrow {
+.section-h .sh-link:hover {
   color: var(--accent);
 }
 
-@media (max-width: 720px) {
-  .cards {
+/* ── Featured report card ────────────────────────────────── */
+.featured {
+  display: grid;
+  grid-template-columns: 1fr;
+  border: 1px solid var(--line);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.15s;
+}
+.featured.has-cover {
+  grid-template-columns: 1fr 380px;
+}
+.featured:hover {
+  border-color: var(--accent);
+}
+.featured .f-body {
+  padding: 28px 32px;
+}
+.featured .f-meta {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--fg-mute);
+  margin-bottom: 14px;
+}
+.featured .f-date {
+  font-variant-numeric: tabular-nums;
+}
+.featured .f-sep {
+  color: var(--line);
+}
+.featured .f-tag {
+  color: var(--accent);
+}
+.featured .f-tag::before {
+  content: "#";
+  opacity: 0.55;
+}
+.featured .f-title {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0 0 12px;
+  color: var(--fg);
+}
+.featured .f-desc {
+  font-size: 14.5px;
+  color: var(--fg-soft);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 560px;
+}
+.featured .f-cta {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--accent);
+  margin-top: 18px;
+}
+.featured .f-cover {
+  border-left: 1px solid var(--line);
+  background: var(--panel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+.featured .f-cover img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .featured.has-cover {
     grid-template-columns: 1fr;
+  }
+  /* The diagram is decorative context — drop it on small screens rather
+     than stacking a full-width panel above the fold. */
+  .featured .f-cover {
+    display: none;
+  }
+  .featured .f-body {
+    padding: 20px;
+  }
+  .featured .f-title {
+    font-size: 20px;
   }
 }
 
-/* ── Post rows ───────────────────────────────────────────── */
-.posts {
-  display: flex;
-  flex-direction: column;
-  border-top: 1px solid var(--line-soft);
+/* ── Ledger index (recent reports) ───────────────────────── */
+.ledger {
+  border-top: 1px solid var(--line);
 }
-.post-row {
+.lg-row {
   display: grid;
-  grid-template-columns: 110px 1fr auto;
-  gap: 24px;
-  padding: 18px 6px;
+  grid-template-columns: 44px 100px 1fr 220px 90px;
+  grid-template-areas: "num date title tags metric";
+  gap: 20px;
+  padding: 16px 4px;
   border-bottom: 1px solid var(--line-soft);
-  color: var(--fg);
-  text-decoration: none;
   align-items: baseline;
+  color: inherit;
+  text-decoration: none;
   transition: background 0.12s;
 }
-.post-row:hover {
-  background: var(--line-soft);
+.lg-row:hover {
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
 }
-.post-row:hover .pr-title {
-  color: var(--accent);
+.lg-num {
+  grid-area: num;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--sl-color-gray-4);
+  font-variant-numeric: tabular-nums;
 }
-.post-row .pr-date {
+.lg-date {
+  grid-area: date;
   font-family: var(--font-mono);
   font-size: 12px;
   color: var(--fg-mute);
   font-variant-numeric: tabular-nums;
 }
-.post-row .pr-title {
-  font-family: var(--font-display);
-  font-size: 18px;
+.lg-title {
+  grid-area: title;
+  font-size: 15.5px;
   font-weight: 600;
+  letter-spacing: -0.01em;
   color: var(--fg);
-  margin: 0 0 4px;
-  line-height: 1.25;
+  line-height: 1.35;
 }
-.post-row .pr-desc {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--fg-soft);
-  margin: 0;
-  line-height: 1.5;
-}
-.post-row .pr-tags {
-  display: flex;
-  gap: 6px;
+.lg-tags {
+  grid-area: tags;
   font-family: var(--font-mono);
   font-size: 11px;
+  color: var(--accent);
+  display: flex;
+  gap: 8px;
   flex-wrap: wrap;
 }
-.post-row .pr-tags span {
-  color: var(--accent);
+.lg-tags span {
+  white-space: nowrap;
 }
-.post-row .pr-tags span::before {
+.lg-tags span::before {
   content: "#";
-  opacity: 0.6;
+  opacity: 0.55;
+}
+.lg-metric {
+  grid-area: metric;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--fg-mute);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Mobile "all reports" link — replaces the section-header link. */
+.all-link {
+  display: none;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--accent);
+  padding: 16px 2px 0;
+  text-decoration: none;
 }
 
 @media (max-width: 720px) {
-  .post-row {
-    grid-template-columns: 90px 1fr;
+  .lg-row {
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "date tags"
+      "title title";
+    row-gap: 6px;
+    column-gap: 12px;
+    padding: 16px 2px;
   }
-  .post-row .pr-tags {
-    grid-column: 2;
+  .lg-num,
+  .lg-metric {
+    display: none;
+  }
+  .lg-tags {
+    justify-content: flex-start;
+  }
+  .section-h .sh-link {
+    display: none;
+  }
+  .all-link {
+    display: inline-block;
   }
 }

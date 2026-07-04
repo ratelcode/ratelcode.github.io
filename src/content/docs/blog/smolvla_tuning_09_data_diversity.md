@@ -3,6 +3,8 @@ title: "The policy keeps grasping to the right of the object — data diversity 
 date: 2026-06-21
 authors: ratel
 excerpt: "The grasp always missed in the same direction. The cause was zero positional diversity in the collected data — the policy had memorized a fixed grasp pose. Diagnosed with a 0.059 spread + added a dataset_gate @check."
+homeCover: "/diagrams/09_grasp_diversity.svg"
+metric: "spread 0.059"
 tags:
   - SmolVLA tuning
   - SmolVLA

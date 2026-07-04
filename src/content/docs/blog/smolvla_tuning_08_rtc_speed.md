@@ -3,6 +3,8 @@ title: "Smooth but slow — three RTC speed tunings (including the half-speed bu
 date: 2026-06-21
 authors: ratel
 excerpt: "Control Hz was half the recorded fps, giving 0.5x playback, plus an under-designed delay and a real_delay-always-0 bug. Reached 24Hz by deriving cadence, delay, and queue from dataset fps and measured p95."
+homeCover: "/diagrams/08_rtc_speed.svg"
+metric: "0.5x → 1.6x"
 tags:
   - SmolVLA tuning
   - SmolVLA

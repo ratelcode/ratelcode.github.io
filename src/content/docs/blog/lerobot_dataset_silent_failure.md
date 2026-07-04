@@ -3,6 +3,8 @@ title: "A catalog of LeRobotDataset silent failures — 7 ways policy evaluation
 date: 2026-05-09
 authors: ratel
 excerpt: "7 silent failures where evaluation finishes without errors but the result has nothing to do with the metric you meant to measure — from variant selection to form-factor mismatch, language coverage 0%, and OOM."
+homeCover: "/diagrams/11_silent_failure.svg"
+metric: "7 failure modes"
 tags:
   - LeRobot
   - dataset

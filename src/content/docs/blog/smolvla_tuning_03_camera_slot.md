@@ -3,6 +3,8 @@ title: "Why the policy froze after training with two cameras — the camera slot
 date: 2026-06-21
 authors: ratel
 excerpt: "Even when you train with two cameras, the config expects three slots: camera1/2/3. The missing camera3 was the real cause of the freeze — filling it took shoulder_lift +4°→+87°."
+homeCover: "/diagrams/03_camera_slot.svg"
+metric: "+4° → +87°"
 tags:
   - SmolVLA tuning
   - SmolVLA

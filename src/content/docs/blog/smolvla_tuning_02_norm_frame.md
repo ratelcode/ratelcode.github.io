@@ -3,6 +3,8 @@ title: "Why pretrained SmolVLA couldn't even lift the arm — a normalization fr
 date: 2026-06-21
 authors: ratel
 excerpt: "The normalization statistics were baked into a different robot's (SO-100) coordinate frame, so coordinates jumped silently. Swapping one set of stats moved the chunk start-point residual from 232.7 to 105.8."
+homeCover: "/diagrams/02_norm_frame.svg"
+metric: "232.7 → 105.8"
 tags:
   - SmolVLA tuning
   - SmolVLA

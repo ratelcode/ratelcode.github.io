@@ -3,6 +3,8 @@ title: "파인튜닝으로 프레임·스케일 격차 닫기 — 무엇이 풀�
 date: 2026-06-21
 authors: ratel
 excerpt: "30ep FT로 elbow out-of-support 74%→0.1%. 단 평가=학습 데이터라 낮은 잔차는 일반화가 아닌 in-distribution 충실도라는 경고."
+homeCover: "/diagrams/04_finetune_oos.svg"
+metric: "74% → 0.1%"
 tags:
   - SmolVLA 튜닝
   - SmolVLA

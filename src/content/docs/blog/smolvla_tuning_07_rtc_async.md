@@ -3,6 +3,8 @@ title: "Killing the Chunk-Boundary Stutter — An RTC Async Inference Setup"
 date: 2026-06-21
 authors: ratel
 excerpt: "Synchronous inference stalls for hundreds of ms at every chunk boundary. Background prediction + queue consumption + boundary blend removes the hitch, and the single serial bus belongs to the main loop only."
+homeCover: "/diagrams/07_rtc_async.svg"
+metric: "no boundary stall"
 tags:
   - SmolVLA tuning
   - SmolVLA

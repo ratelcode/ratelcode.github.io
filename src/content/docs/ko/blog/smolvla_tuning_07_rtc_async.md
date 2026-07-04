@@ -3,6 +3,8 @@ title: "청크 경계 멈칫 없애기 — RTC 비동기 추론 구조"
 date: 2026-06-21
 authors: ratel
 excerpt: "동기 추론은 청크 경계마다 수백 ms 멈칫한다. 백그라운드 예측 + 큐 소비 + 경계 blend로 끊김 제거, 단일 시리얼 버스는 메인 전용으로."
+homeCover: "/diagrams/07_rtc_async.svg"
+metric: "경계 멈춤 제거"
 tags:
   - SmolVLA 튜닝
   - SmolVLA

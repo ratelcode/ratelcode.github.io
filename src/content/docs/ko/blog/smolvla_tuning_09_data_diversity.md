@@ -3,6 +3,8 @@ title: "정책이 자꾸 물체 오른쪽을 잡는다 — 데이터 다양성�
 date: 2026-06-21
 authors: ratel
 excerpt: "grasp가 항상 같은 방향으로 빗나갔다. 원인은 수집 데이터의 위치 다양성 0 — 고정 grasp pose 암기. 분산 0.059 진단 + dataset_gate @check 추가."
+homeCover: "/diagrams/09_grasp_diversity.svg"
+metric: "spread 0.059"
 tags:
   - SmolVLA 튜닝
   - SmolVLA

@@ -3,6 +3,8 @@ title: "왜 사전학습 SmolVLA가 팔도 못 들었나 — 정규화 프레임
 date: 2026-06-21
 authors: ratel
 excerpt: "정규화 통계가 다른 로봇(SO-100) 좌표 프레임에 박혀 좌표가 조용히 점프했다. 통계 한 세트 교체로 chunk 시작점 잔차 232.7→105.8."
+homeCover: "/diagrams/02_norm_frame.svg"
+metric: "232.7 → 105.8"
 tags:
   - SmolVLA 튜닝
   - SmolVLA

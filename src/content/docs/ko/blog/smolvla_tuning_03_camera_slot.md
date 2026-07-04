@@ -3,6 +3,8 @@ title: "2개 카메라로 학습했는데 정책이 멈춘 이유 — 카메라 
 date: 2026-06-21
 authors: ratel
 excerpt: "2캠으로 학습해도 config는 camera1/2/3 세 슬롯을 기대한다. camera3 누락이 freeze의 진짜 원인 — 채우니 shoulder_lift +4°→+87°."
+homeCover: "/diagrams/03_camera_slot.svg"
+metric: "+4° → +87°"
 tags:
   - SmolVLA 튜닝
   - SmolVLA

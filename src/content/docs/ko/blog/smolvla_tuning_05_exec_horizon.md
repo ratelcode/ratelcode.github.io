@@ -3,6 +3,8 @@ title: "팔이 reach만 반복하고 안 들렸던 이유 — 액션 청크 실�
 date: 2026-06-21
 authors: ratel
 excerpt: "50스텝 청크 중 앞 10스텝만 실행하니 reach 자세에 고착됐다. EXEC_STEPS 10→40으로 한 청크 안에서 reach→grasp→lift 완주."
+homeCover: "/diagrams/05_exec_horizon.svg"
+metric: "chunk 10 → 40"
 tags:
   - SmolVLA 튜닝
   - SmolVLA

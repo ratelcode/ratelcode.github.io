@@ -3,6 +3,8 @@ title: "Closing the frame and scale gap with fine-tuning — what it fixes and w
 date: 2026-06-21
 authors: ratel
 excerpt: "30ep FT cut elbow out-of-support from 74% to 0.1%. But eval == training data, so the low residual reflects in-distribution fidelity, not generalization — read with caution."
+homeCover: "/diagrams/04_finetune_oos.svg"
+metric: "74% → 0.1%"
 tags:
   - SmolVLA tuning
   - SmolVLA

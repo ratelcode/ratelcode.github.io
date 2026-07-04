@@ -3,6 +3,8 @@ title: "실물 로봇 안전 장치 — 상대목표 클램프 + 과부하 자�
 date: 2026-06-21
 authors: ratel
 excerpt: "정책 raw 출력을 모터로 직송하면 위험하다. envelope 클립 + per-step 클램프 + Present_Load 과부하 중단 3층 가드, 그리고 deg/s 불변 설계."
+homeCover: "/diagrams/06_safety_guards.svg"
+metric: "3중 가드"
 tags:
   - SmolVLA 튜닝
   - SmolVLA

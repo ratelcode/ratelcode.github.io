@@ -1,0 +1,89 @@
+---
+// Home post index per the "Home Final" design comp: a featured card for the
+// latest report, then a ledger-style index of the next few.
+//
+// starlight-blog middleware provides posts pre-sorted by date (desc) with
+// canonical hrefs — no need to re-derive from getCollection. `.filter(!draft)`
+// keeps dev-mode parity with the production build.
+
+const LEDGER_COUNT = 4;
+
+type PostExtras = { metric?: string; homeCover?: string };
+
+const isKo = Astro.url.pathname.startsWith('/ko/') || Astro.url.pathname === '/ko';
+const blogHref = isKo ? '/ko/blog/' : '/blog/';
+const t = isKo
+	? { latest: '최신 리포트', recent: '최근 리포트', read: '리포트 읽기 →', all: (n: number) => `전체 ${n}건 → 모든 리포트`, allShort: (n: number) => `전체 ${n}건 보기 →` }
+	: { latest: 'Latest report', recent: 'Recent reports', read: 'Read the report →', all: (n: number) => `${n} total → all reports`, allShort: (n: number) => `All ${n} reports →` };
+
+// The plugin tiebreaks same-date posts by localized title, so en and ko
+// homes would list different "recent" posts (the 9-part tuning series
+// shares one date). Slug descending instead: series order 09→01,
+// identical across locales.
+const posts = Astro.locals.starlightBlog.posts
+	.filter((post) => !post.draft)
+	.sort(
+		(a, b) =>
+			b.createdAt.getTime() - a.createdAt.getTime() ||
+			b.entry.id.localeCompare(a.entry.id),
+	);
+const total = posts.length;
+const [featured, ...rest] = posts;
+const ledger = rest.slice(0, LEDGER_COUNT);
+
+const fmt = (d: Date) => d.toISOString().slice(0, 10);
+// Ledger numbering counts down from the newest post (#total) — index 0 is
+// the featured card, so ledger row i is post number total - 1 - i.
+const num = (i: number) => String(total - 1 - i).padStart(2, '0');
+const extras = (p: (typeof posts)[number]) => p.entry.data as PostExtras;
+---
+
+{
+	featured && (
+		<>
+			<div class="section-h">{t.latest}</div>
+			<a class={`featured${extras(featured).homeCover ? ' has-cover' : ''}`} href={featured.href}>
+				<div class="f-body">
+					<div class="f-meta">
+						<span class="f-date">{fmt(featured.createdAt)}</span>
+						<span class="f-sep">│</span>
+						{featured.tags.slice(0, 3).map((tag) => (
+							<span class="f-tag">{tag.label}</span>
+						))}
+					</div>
+					<h3 class="f-title">{featured.entry.data.title}</h3>
+					{featured.entry.data.excerpt && <p class="f-desc">{featured.entry.data.excerpt}</p>}
+					<div class="f-cta">{t.read}</div>
+				</div>
+				{extras(featured).homeCover && (
+					<div class="f-cover">
+						<img src={extras(featured).homeCover} alt="" loading="lazy" />
+					</div>
+				)}
+			</a>
+		</>
+	)
+}
+
+<div class="section-h">
+	{t.recent}
+	<a class="sh-link" href={blogHref}>{t.all(total)}</a>
+</div>
+<div class="ledger">
+	{
+		ledger.map((post, i) => (
+			<a class="lg-row" href={post.href}>
+				<div class="lg-num">{num(i)}</div>
+				<div class="lg-date">{fmt(post.createdAt)}</div>
+				<div class="lg-title">{post.entry.data.title}</div>
+				<div class="lg-tags">
+					{post.tags.slice(0, 2).map((tag) => (
+						<span>{tag.label}</span>
+					))}
+				</div>
+				<div class="lg-metric">{extras(post).metric}</div>
+			</a>
+		))
+	}
+</div>
+<a class="all-link" href={blogHref}>{t.allShort(total)}</a>

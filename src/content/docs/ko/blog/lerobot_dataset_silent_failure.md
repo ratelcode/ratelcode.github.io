@@ -3,6 +3,8 @@ title: "LeRobotDataset의 silent failure 카탈로그 — 정책 평가가 조�
 date: 2026-05-09
 authors: ratel
 excerpt: "평가가 오류 없이 끝나는데 결과가 의도한 metric과 무관한 7가지 silent failure — variant 선택부터 form-factor mismatch, language coverage 0%, OOM까지."
+homeCover: "/diagrams/11_silent_failure.svg"
+metric: "7가지 실패"
 tags:
   - LeRobot
   - 데이터셋

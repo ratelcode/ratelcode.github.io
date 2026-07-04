@@ -3,6 +3,7 @@ title: "Wrapping the LeRobot pipeline in an agent loop — LeAgents devlog (M0)"
 date: 2026-07-04
 authors: ratel
 excerpt: "Instead of running collect→train→eval by hand, I wrapped it in a deterministic loop plus agents. Deep research to ground the design (24 claims confirmed, 1 refuted), then a one-day catalog of real-environment bugs on the way to a 3-cycle autonomous loop on a real GPU."
+metric: "3 cycles · 22 min"
 tags:
   - LeAgents
   - LeRobot

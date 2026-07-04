@@ -3,6 +3,8 @@ title: "SmolVLA 실기 튜닝 여정 — 팔도 못 들던 정책을 부드러�
 date: 2026-06-21
 authors: ratel
 excerpt: "공개 SmolVLA를 SO-101에 그대로 물렸더니 팔도 못 들었다 — 정규화·카메라 슬롯·실행 구간·안전·RTC·데이터 다양성까지, 9부작 튜닝 여정의 전체 지도."
+homeCover: "/diagrams/01_journey.svg"
+metric: "9편 시리즈"
 tags:
   - SmolVLA 튜닝
   - SmolVLA

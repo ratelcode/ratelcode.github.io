@@ -3,6 +3,7 @@ title: "LeRobot 파이프라인을 에이전트 루프로 — LeAgents 개발기
 date: 2026-07-04
 authors: ratel
 excerpt: "collect→train→eval을 손으로 돌리는 대신 결정론적 루프 + 에이전트로 감쌌다. 딥리서치로 설계 근거를 검증(24건 확인, 1건 반박)하고, 하루 만에 실 GPU에서 3사이클 자동 루프를 완주하기까지의 실환경 디버깅 카탈로그."
+metric: "3 사이클 · 22분"
 tags:
   - LeAgents
   - LeRobot

@@ -3,6 +3,8 @@ title: "Why the arm only repeated reach and never lifted — the action-chunk ex
 date: 2026-06-21
 authors: ratel
 excerpt: "Executing only the first 10 steps of a 50-step chunk pinned the arm in the reach pose. Bumping EXEC_STEPS from 10 to 40 ran reach→grasp→lift to completion within a single chunk."
+homeCover: "/diagrams/05_exec_horizon.svg"
+metric: "chunk 10 → 40"
 tags:
   - SmolVLA tuning
   - SmolVLA

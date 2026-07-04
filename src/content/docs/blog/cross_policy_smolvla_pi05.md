@@ -3,6 +3,8 @@ title: "Real-Robot Comparison of Two VLA Policies — 9.2× the Model but Only 1
 date: 2026-05-09
 authors: ratel
 excerpt: "SmolVLA(450M) vs π0.5(4143M) compared under the same environment, same dataset, and same sweep — a 9.2× model is only 1.3× slower on forward, and a one-character difference in variant means SR 0% vs 100%."
+homeCover: "/diagrams/10_cross_policy.svg"
+metric: "SR 0% vs 100%"
 tags:
   - VLA
   - SmolVLA

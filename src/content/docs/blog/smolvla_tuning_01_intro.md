@@ -3,6 +3,8 @@ title: "SmolVLA Real-Robot Tuning Journey — From a Policy That Couldn't Even L
 date: 2026-06-21
 authors: ratel
 excerpt: "Dropping public SmolVLA onto SO-101 as-is, the arm wouldn't even lift — normalization, camera slot, execution horizon, safety, RTC, data diversity: the full map of a 9-part tuning journey."
+homeCover: "/diagrams/01_journey.svg"
+metric: "9-part series"
 tags:
   - SmolVLA tuning
   - SmolVLA

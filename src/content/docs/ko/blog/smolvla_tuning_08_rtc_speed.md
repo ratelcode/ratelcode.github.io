@@ -3,6 +3,8 @@ title: "부드러운데 느렸다 — RTC 속도 튜닝 3가지 (절반속도 �
 date: 2026-06-21
 authors: ratel
 excerpt: "제어 Hz가 기록 fps의 절반이라 0.5x 재생 + 지연 과소설계 + real_delay 항상 0 버그. 카데시·지연·큐를 데이터셋 fps와 실측 p95에서 파생해 24Hz 달성."
+homeCover: "/diagrams/08_rtc_speed.svg"
+metric: "0.5x → 1.6x"
 tags:
   - SmolVLA 튜닝
   - SmolVLA

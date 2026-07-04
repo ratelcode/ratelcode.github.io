@@ -2,6 +2,8 @@
 // Splash hero — lives in an Astro component (not MDX) so the markup is
 // emitted verbatim: MDX would wrap loose text in <p>, nesting <p> inside
 // the poster and breaking the layout.
+// Layout implements the "Home Final" Claude Design comp (framed poster,
+// subtitle, CTAs; brand mark lives in the Starlight header, not here).
 
 // Starlight's header nav (Blog link, social icons) is desktop-only and the
 // splash template has no sidebar/hamburger, so these CTAs are the ONLY
@@ -9,8 +11,20 @@
 const isKo = Astro.url.pathname.startsWith('/ko/') || Astro.url.pathname === '/ko';
 const base = isKo ? '/ko' : '';
 const t = isKo
-	? { tagline: '독립 로봇 평가', posts: '전체 리포트', method: '측정 프로토콜', about: '소개' }
-	: { tagline: 'independent robot evaluation', posts: 'All reports', method: 'Methodology', about: 'About' };
+	? {
+			tagline: '독립 로봇 평가',
+			sub: '공개 VLA 정책을 실로봇에서 직접 돌려 본 재현성 리포트 — 모든 숫자를 직접 검증할 수 있도록 원시 로그·시드·설정을 함께 공개합니다.',
+			posts: '전체 리포트',
+			method: '측정 프로토콜',
+			about: '소개',
+		}
+	: {
+			tagline: 'independent robot evaluation',
+			sub: 'Reproducibility reports from running open VLA policies on a real robot — with the raw logs, seeds, and configs to check every number yourself.',
+			posts: 'All reports',
+			method: 'Methodology',
+			about: 'About',
+		};
 ---
 
 <section class="phosphor-hero">
@@ -18,23 +32,19 @@ const t = isKo
 		<div class="corners"></div>
 
 		<div class="meta-top">
-			<span><svg class="glyph" viewBox="0 0 128 128" fill="none" aria-hidden="true"><path d="M34 36 66 64 34 92" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" /><rect x="74" y="79" width="34" height="14" rx="3" fill="currentColor" /></svg> ratelcode</span>
-			<span>—</span>
+			<span class="glyph">■</span>
 			<span>{t.tagline}</span>
 			<span style="margin-left: auto">SO-101 · real hardware</span>
 		</div>
 
-		<div class="anchors">
-			<span class="anchor cap" data-label="Cap height"></span>
-			<span class="anchor x" data-label="X-height"></span>
-			<span class="anchor base" data-label="Baseline"></span>
-			<span class="anchor desc" data-label="Descender"></span>
+		<div class="poster">
 			{/* decorative poster copy — the page's real h1 is the (visually
 			    hidden) Starlight title; two h1s would break a11y */}
 			<p class="poster-h1" aria-hidden="true">
 				Physical-ai.<br />
 				<span class="accent">evaluate.</span><span class="cursor"></span>
 			</p>
+			<p class="hero-sub">{t.sub}</p>
 		</div>
 
 		<div class="ctas">
@@ -44,8 +54,7 @@ const t = isKo
 		</div>
 
 		<div class="meta-bot">
-			<span>by ratelcode</span>
-			<span>— evaluation · VLA · reproducibility · silent failure · open raw logs</span>
+			<span>evaluation · VLA · reproducibility · silent failure · open raw logs</span>
 			<span class="prompt">$ ls evals/</span>
 		</div>
 

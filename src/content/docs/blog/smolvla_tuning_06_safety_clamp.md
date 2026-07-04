@@ -3,6 +3,8 @@ title: "Safety guards for a real robot — relative-target clamp + overload auto
 date: 2026-06-21
 authors: ratel
 excerpt: "Sending a policy's raw output straight to the motors is dangerous. A three-layer guard — envelope clip + per-step clamp + Present_Load overload abort — plus a deg/s-invariant design."
+homeCover: "/diagrams/06_safety_guards.svg"
+metric: "3-layer guard"
 tags:
   - SmolVLA tuning
   - SmolVLA

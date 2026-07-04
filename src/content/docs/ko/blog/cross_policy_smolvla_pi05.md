@@ -3,6 +3,8 @@ title: "두 VLA 정책의 실측 비교 — 9.2× 모델인데 forward는 1.3×,
 date: 2026-05-09
 authors: ratel
 excerpt: "SmolVLA(450M) vs π0.5(4143M)를 동일 환경·동일 데이터셋·동일 sweep으로 비교 — 9.2× 모델이 forward는 1.3×만, variant 한 글자 차이가 SR 0% vs 100%."
+homeCover: "/diagrams/10_cross_policy.svg"
+metric: "SR 0% vs 100%"
 tags:
   - VLA
   - SmolVLA
