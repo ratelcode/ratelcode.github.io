@@ -1,29 +1,29 @@
 ---
-title: "LeRobot 파이프라인을 에이전트 루프로 — LeAgent 개발기 (M0)"
+title: "LeRobot 파이프라인을 에이전트 루프로 — LeAgents 개발기 (M0)"
 date: 2026-07-04
 authors: ratel
 excerpt: "collect→train→eval을 손으로 돌리는 대신 결정론적 루프 + 에이전트로 감쌌다. 딥리서치로 설계 근거를 검증(24건 확인, 1건 반박)하고, 하루 만에 실 GPU에서 3사이클 자동 루프를 완주하기까지의 실환경 디버깅 카탈로그."
 tags:
-  - LeAgent
+  - LeAgents
   - LeRobot
   - 에이전트
   - 자동화
   - SmolVLA
 ---
 
-> 개인 프로젝트 [LeAgent](https://github.com/ratelcode/LeAgent)의 개발 기록입니다. 측정·커밋으로 확인한 내용과 제 의견을 문장에서 구분해 적었습니다. English version: [LeAgent devlog (M0)](/blog/leagent_m0_devlog/)
+> 개인 프로젝트 [LeAgents](https://github.com/ratelcode/LeAgents)의 개발 기록입니다. 측정·커밋으로 확인한 내용과 제 의견을 문장에서 구분해 적었습니다. English version: [LeAgents devlog (M0)](/blog/leagents_m0_devlog/)
 
 > **용어 1줄 정리**
 > - **LeRobot**: Hugging Face의 로보틱스 라이브러리입니다. `lerobot-train` / `lerobot-eval` CLI와 LeRobotDataset v3.0 포맷을 제공합니다.
 > - **SmolVLA**: 450M 파라미터 VLA(vision-language-action) 베이스 모델입니다. 파인튜닝 전제로 설계됐습니다.
 > - **LIBERO**: 130개 조작 태스크로 구성된 시뮬레이션 벤치마크입니다. LeRobot v0.4.0부터 공식 지원됩니다.
-> - **사이클(cycle)**: LeAgent에서 collect→train→eval→decide 한 바퀴를 말합니다.
+> - **사이클(cycle)**: LeAgents에서 collect→train→eval→decide 한 바퀴를 말합니다.
 
 ---
 
 ## TL;DR
 
-- SmolVLA 튜닝 시리즈를 하면서 매번 손으로 돌리던 "데이터 수집 → 학습 → 평가 → 판단" 루프를 통째로 자동화하는 프로젝트(LeAgent)를 시작했습니다.
+- SmolVLA 튜닝 시리즈를 하면서 매번 손으로 돌리던 "데이터 수집 → 학습 → 평가 → 판단" 루프를 통째로 자동화하는 프로젝트(LeAgents)를 시작했습니다.
 - 설계 전에 딥리서치를 돌렸고(108개 서브에이전트, 소스 26개, 주장 130건 추출 → 상위 25건 3표 적대적 검증), **24건 확인 / 1건 반박**이 나왔습니다. 반박된 1건("RoboGen은 무인 무한 데이터 플라이휠로 쓸 수 있다")이 그대로 설계 규칙이 됐습니다: 루프 경계마다 검증 게이트, 무한 자동화 가정 금지.
 - 핵심 설계 원칙: **제어 흐름은 LLM이 아니라 순수 Python 상태머신 + SQLite.** LLM은 제안(태스크 큐레이션, 지식 증류)만 하고, promote/iterate/escalate/rollback 결정은 eval 델타의 순수 함수입니다.
 - 유닛 테스트 55개가 전부 통과해도 실제 CLI를 돌리면 깨집니다. lerobot 0.5.1 실환경에서만 드러난 이슈가 **10건** 나왔고 아래에 카탈로그로 정리했습니다.
@@ -35,7 +35,7 @@ tags:
 
 SmolVLA 튜닝 시리즈(1~9편)를 진행하는 동안 제 워크플로는 이랬습니다: 데이터를 좀 모으고, `lerobot-train`을 돌리고, 끝나면 `lerobot-eval`을 돌리고, 결과를 보고 "데이터를 더 모을까, 하이퍼파라미터를 바꿀까, 모델을 바꿀까"를 매번 손으로 판단했습니다. 판단 기준은 머릿속에 있었고, 판단 이력은 어디에도 없었습니다.
 
-이 루프 자체를 코드로 만들면 판단 기준이 명시되고, 이력이 남고, 밤새 돌릴 수 있습니다. 그게 LeAgent입니다: 오케스트레이터가 데이터/학습/평가/개선 에이전트를 조율하고, 대시보드로 플로우를 보는 공개 프로젝트.
+이 루프 자체를 코드로 만들면 판단 기준이 명시되고, 이력이 남고, 밤새 돌릴 수 있습니다. 그게 LeAgents입니다: 오케스트레이터가 데이터/학습/평가/개선 에이전트를 조율하고, 대시보드로 플로우를 보는 공개 프로젝트.
 
 ## 설계를 리서치로 검증하고 시작했다
 
@@ -105,6 +105,6 @@ Orchestrator (Python 상태머신 + SQLite)
 
 ## 현재 상태와 다음
 
-- 이 글을 쓰는 시점에 풀스케일 M0(사이클당 20k스텝, 데이터 40→80→160 에피소드, ~7시간)가 돌고 있고, 대시보드(`leagent dash` — 사이클 파이프라인, eval 차트, 롤아웃 영상, 이벤트, 지식 브라우저)로 관전 중입니다.
+- 이 글을 쓰는 시점에 풀스케일 M0(사이클당 20k스텝, 데이터 40→80→160 에피소드, ~7시간)가 돌고 있고, 대시보드(`leagents dash` — 사이클 파이프라인, eval 차트, 롤아웃 영상, 이벤트, 지식 브라우저)로 관전 중입니다.
 - 다음: M1 잔여(DexFlyWheel residual RL, RoboGene식 LLM 큐레이션), 실로봇(M3)은 CVE-2026-25874(async-inference gRPC의 pickle RCE)가 수정되는 lerobot 0.6.0 이후로.
-- 코드: [github.com/ratelcode/LeAgent](https://github.com/ratelcode/LeAgent) — 이 글이 올라갈 때쯤 public 전환 예정입니다.
+- 코드: [github.com/ratelcode/LeAgents](https://github.com/ratelcode/LeAgents) — 이 글이 올라갈 때쯤 public 전환 예정입니다.

@@ -1,29 +1,29 @@
 ---
-title: "Wrapping the LeRobot pipeline in an agent loop — LeAgent devlog (M0)"
+title: "Wrapping the LeRobot pipeline in an agent loop — LeAgents devlog (M0)"
 date: 2026-07-04
 authors: ratel
 excerpt: "Instead of running collect→train→eval by hand, I wrapped it in a deterministic loop plus agents. Deep research to ground the design (24 claims confirmed, 1 refuted), then a one-day catalog of real-environment bugs on the way to a 3-cycle autonomous loop on a real GPU."
 tags:
-  - LeAgent
+  - LeAgents
   - LeRobot
   - agents
   - automation
   - SmolVLA
 ---
 
-> Development log for my side project [LeAgent](https://github.com/ratelcode/LeAgent). I try to keep measured/committed facts and my opinions distinguishable at the sentence level. 한국어 버전: [LeAgent 개발기 (M0)](/ko/blog/leagent_m0_devlog/)
+> Development log for my side project [LeAgents](https://github.com/ratelcode/LeAgents). I try to keep measured/committed facts and my opinions distinguishable at the sentence level. 한국어 버전: [LeAgents 개발기 (M0)](/ko/blog/leagents_m0_devlog/)
 
 > **Terms, one line each**
 > - **LeRobot**: Hugging Face's robotics library — `lerobot-train` / `lerobot-eval` CLIs and the LeRobotDataset v3.0 format.
 > - **SmolVLA**: a 450M-parameter vision-language-action base model, designed to be fine-tuned.
 > - **LIBERO**: a simulation benchmark of 130 manipulation tasks, officially supported since LeRobot v0.4.0.
-> - **Cycle**: one lap of collect→train→eval→decide in LeAgent.
+> - **Cycle**: one lap of collect→train→eval→decide in LeAgents.
 
 ---
 
 ## TL;DR
 
-- While doing the SmolVLA tuning series I kept running the "collect data → train → evaluate → decide what's next" loop by hand. LeAgent is that loop as code: an orchestrator drives data/train/eval agents, and a dashboard shows the flow.
+- While doing the SmolVLA tuning series I kept running the "collect data → train → evaluate → decide what's next" loop by hand. LeAgents is that loop as code: an orchestrator drives data/train/eval agents, and a dashboard shows the flow.
 - Before writing code I ran a deep-research pass (108 sub-agents, 26 sources, 130 extracted claims → top 25 through 3-vote adversarial verification): **24 confirmed, 1 refuted**. The refuted one — "RoboGen works as an unattended, unbounded data flywheel" — became the core design rule: verification gates at every loop boundary, never assume unbounded automation.
 - Key principle: **control flow is a plain Python state machine + SQLite, never an LLM.** LLMs only propose (task curation, knowledge distillation); promote/iterate/escalate/rollback is a pure function of eval deltas.
 - All 55 unit tests passing means little until you run the real CLIs. lerobot 0.5.1 produced **10 issues that only showed up in the real environment** — cataloged below.
@@ -35,7 +35,7 @@ tags:
 
 Throughout the SmolVLA tuning series my workflow was: collect some data, run `lerobot-train`, run `lerobot-eval`, look at the numbers, and decide by feel whether to collect more data, change hyperparameters, or switch models. The decision criteria lived in my head; the decision history lived nowhere.
 
-Turning the loop itself into code makes the criteria explicit, keeps the history, and lets it run overnight. That's LeAgent: an open-source orchestrator coordinating data/training/eval/improvement agents over the LeRobot pipeline, with a dashboard to watch the flow.
+Turning the loop itself into code makes the criteria explicit, keeps the history, and lets it run overnight. That's LeAgents: an open-source orchestrator coordinating data/training/eval/improvement agents over the LeRobot pipeline, with a dashboard to watch the flow.
 
 ## Grounding the design in verified research first
 
@@ -105,6 +105,6 @@ The loop accumulates data (events, checkpoints) but not lessons. Following Karpa
 
 ## Where it stands, what's next
 
-- As I write this, a full-scale M0 (20k steps/cycle, data 40→80→160 episodes, ~7 h) is running, watched live through the dashboard (`leagent dash` — cycle pipeline, eval chart, rollout videos, event log, knowledge browser).
+- As I write this, a full-scale M0 (20k steps/cycle, data 40→80→160 episodes, ~7 h) is running, watched live through the dashboard (`leagents dash` — cycle pipeline, eval chart, rollout videos, event log, knowledge browser).
 - Next: the remaining M1 work (DexFlyWheel-style residual RL, RoboGene-style LLM curation). Real-robot work (M3) waits for lerobot 0.6.0, which fixes CVE-2026-25874 (a pickle RCE in the async-inference gRPC path).
-- Code: [github.com/ratelcode/LeAgent](https://github.com/ratelcode/LeAgent) — going public around the time this post goes up.
+- Code: [github.com/ratelcode/LeAgents](https://github.com/ratelcode/LeAgents) — going public around the time this post goes up.
