@@ -3,6 +3,7 @@ title: "LeRobot 파이프라인을 에이전트 루프로 — LeAgents 개발기
 date: 2026-07-04
 authors: ratel
 excerpt: "collect→train→eval을 손으로 돌리는 대신 결정론적 루프 + 에이전트로 감쌌다. 딥리서치로 설계 근거를 검증(24건 확인, 1건 반박)하고, 하루 만에 실 GPU에서 3사이클 자동 루프를 완주하기까지의 실환경 디버깅 카탈로그."
+homeCover: "/diagrams/12_leagents_loop_ko.svg"
 metric: "3 사이클 · 22분"
 tags:
   - LeAgents
@@ -29,6 +30,11 @@ tags:
 - 핵심 설계 원칙: **제어 흐름은 LLM이 아니라 순수 Python 상태머신 + SQLite.** LLM은 제안(태스크 큐레이션, 지식 증류)만 하고, promote/iterate/escalate/rollback 결정은 eval 델타의 순수 함수입니다.
 - 유닛 테스트 55개가 전부 통과해도 실제 CLI를 돌리면 깨집니다. lerobot 0.5.1 실환경에서만 드러난 이슈가 **10건** 나왔고 아래에 카탈로그로 정리했습니다.
 - 첫 실 GPU 자동 루프(미니 M0: 3사이클, 데이터 8→16→32 에피소드, RTX 5070 Ti)는 22분에 완주했지만 성공률이 0%로 평평했고 — 루프가 이걸 "정책 한계"로 오판해 더 큰 모델로 escalate했습니다. 이 관측이 `escalate_floor` 가드(0% 플래토 = 학습량 부족 → iterate)로 이어졌습니다. **측정이 설계를 고친 사례**입니다.
+
+![LeAgents M0 루프: collect→train→eval→decide를 결정적 상태머신으로 코드화, LLM은 제안만 하고 결정하지 않음](/diagrams/12_leagents_loop_ko.svg)
+
+*캡션: 오케스트레이터가 collect→train→eval→decide를 코드로 순환시킵니다 — 판정 캐스케이드는 eval 델타의 순수 함수이고, LLM 제안자는 제어 흐름을 건드리지 않으며, 미니 M0 실행에서 0% 정체를 오판한 관측이 `escalate_floor` 가드가 됐습니다.*
+
 
 ---
 

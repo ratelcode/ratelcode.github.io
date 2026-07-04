@@ -3,6 +3,7 @@ title: "Wrapping the LeRobot pipeline in an agent loop — LeAgents devlog (M0)"
 date: 2026-07-04
 authors: ratel
 excerpt: "Instead of running collect→train→eval by hand, I wrapped it in a deterministic loop plus agents. Deep research to ground the design (24 claims confirmed, 1 refuted), then a one-day catalog of real-environment bugs on the way to a 3-cycle autonomous loop on a real GPU."
+homeCover: "/diagrams/12_leagents_loop.svg"
 metric: "3 cycles · 22 min"
 tags:
   - LeAgents
@@ -29,6 +30,11 @@ tags:
 - Key principle: **control flow is a plain Python state machine + SQLite, never an LLM.** LLMs only propose (task curation, knowledge distillation); promote/iterate/escalate/rollback is a pure function of eval deltas.
 - All 55 unit tests passing means little until you run the real CLIs. lerobot 0.5.1 produced **10 issues that only showed up in the real environment** — cataloged below.
 - The first real-GPU autonomous loop (mini M0: 3 cycles, data growing 8→16→32 episodes, RTX 5070 Ti) finished in 22 minutes — with success flat at 0%, which the loop misread as "policy ceiling" and escalated to a bigger model. That observation became the `escalate_floor` guard (a near-zero plateau means under-training → iterate). **A measurement fixing the design.**
+
+![The LeAgents M0 loop: collect→train→eval→decide as a deterministic state machine, with an LLM that proposes but never decides](/diagrams/12_leagents_loop.svg)
+
+*Caption: the orchestrator cycles collect→train→eval→decide as code — the decision cascade is a pure function of eval deltas, the LLM proposer never touches control flow, and the mini-M0 run turned a misread 0% plateau into the `escalate_floor` guard.*
+
 
 ---
 
