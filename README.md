@@ -1,55 +1,64 @@
 # ratelcode.github.io
 
-공개 VLA 정책의 실로봇 재현성·silent failure를 측정하는 **독립 평가 리포트** 사이트.
-Astro + Starlight 기반.
+**Independent evaluation reports** measuring the real-robot reproducibility and
+silent failures of open VLA policies. Built with Astro + Starlight.
 
-- 프레임워크: [Astro](https://astro.build) + [Starlight](https://starlight.astro.build)
-- 블로그 플러그인: [`starlight-blog`](https://github.com/HiDeoo/starlight-blog)
-- 호스팅: GitHub Pages (`main` 브랜치 푸시 시 자동 배포)
+- Framework: [Astro](https://astro.build) + [Starlight](https://starlight.astro.build)
+- Blog plugin: [`starlight-blog`](https://github.com/HiDeoo/starlight-blog)
+- Hosting: GitHub Pages (auto-deploys on push to `main`)
 
-## 개발
+## Development
 
 ```bash
-npm install   # 최초 1회
-npm run dev   # 개발 서버 (http://localhost:4321)
-npm run build # 정적 사이트 빌드 → ./dist
-npm run preview # 빌드 결과 로컬 미리보기
+npm install   # once
+npm run dev   # dev server (http://localhost:4321)
+npm run build # static build → ./dist
+npm run preview # preview the build locally
 ```
 
-## 사이트 언어 구조
+## Locale structure
 
-**영어(루트) + 한국어(`/ko/`)** — 2026-07에 기본 로케일을 ko→en으로 전환.
+**English (root) + Korean (`/ko/`)** — the default locale flipped ko→en in 2026-07.
 
-- 영어 원문: `src/content/docs/` (루트)
-- 한국어: `src/content/docs/ko/` — 같은 파일명(slug)으로 두면 언어 스위처가 자동 연결
-- 한국어 번역이 없는 페이지는 영어로 폴백
-- 전환 전에 발행된 옛 URL(`/blog/*_ko/`, `/en/*`)은 `astro.config.mjs`의
-  `redirects`가 새 주소로 넘김 — 링크가 이미 퍼진 글의 slug는 바꾸지 말 것
+- English originals: `src/content/docs/` (root)
+- Korean: `src/content/docs/ko/` — same filename (slug) links the two via the
+  language switcher
+- Pages without a Korean translation fall back to English
+- Old URLs published before the flip (`/blog/*_ko/`, `/en/*`) are forwarded by
+  the `redirects` map in `astro.config.mjs` — never change the slug of a post
+  whose link is already out in the wild
 
-## 글 작성
+## Writing
 
-- 평가 리포트(블로그): `src/content/docs/blog/`에 영어 원문 추가, frontmatter에 `date`, `authors` 지정
-  - 발행 전 [측정 프로토콜의 발행 게이트 5항](src/content/docs/methodology/protocol.md) 충족 여부 확인
-  - 한국어 병행 발행: 같은 파일명으로 `src/content/docs/ko/blog/`에 추가
-- 방법론 문서: `src/content/docs/methodology/` (+ `ko/methodology/`)
-- 설명 다이어그램(SVG): `public/diagrams/`
+- Evaluation reports (blog): add the English original under
+  `src/content/docs/blog/` with `date` and `authors` in the frontmatter
+  - Before publishing, check the five
+    [publication gates](src/content/docs/methodology/protocol.md)
+  - Korean edition: add the same filename under `src/content/docs/ko/blog/`
+- Methodology docs: `src/content/docs/methodology/` (+ `ko/methodology/`)
+- Explanatory diagrams (SVG): `public/diagrams/`
 
-## 디자인
+## Design
 
-- 테마: `src/styles/theme.css` — "Phosphor Terminal" (Geist 모노크롬 + 형광 그린 포인트)
-- 폰트: Geist/Geist Mono는 Astro Fonts API, Noto Sans KR은 `@fontsource` customCss
-  (한글 슬라이스를 캐시 가능한 외부 CSS로 유지하기 위함 — `astro.config.mjs` 주석 참조)
-- 커스텀 컴포넌트: `src/components/` — Head(OG/비콘), SiteTitle(브랜드 마크),
-  Footer(면책·상태바), HomeHero(스플래시 포스터), RecentPosts(홈 최근 글)
-- 스플래시(홈)는 사이드바·햄버거가 없어 **HomeHero의 CTA 버튼이 모바일 유일 내비게이션**
+- Theme: `src/styles/theme.css` — "Phosphor Terminal" (Geist monochrome with a
+  phosphor-green accent)
+- Fonts: Geist / Geist Mono via the Astro Fonts API; Noto Sans KR via
+  `@fontsource` customCss (keeps the sliced hangul chunks in one cacheable
+  external stylesheet — see the note in `astro.config.mjs`)
+- Custom components: `src/components/` — Head (OG / analytics beacon),
+  SiteTitle (brand mark), Footer (disclaimer + status bar), HomeHero (splash
+  poster), RecentPosts (home post list)
+- The splash (home) page has no sidebar or hamburger menu, so **the HomeHero
+  CTA buttons are the only navigation on mobile**
 
-## 애널리틱스
+## Analytics
 
-`tinybird/` 데이터 프로젝트로 쿠키 없는 자체 수집(pageview/contact_click).
-`src/components/Head.astro`의 `TB_TOKEN`이 비어 있으면 수집 꺼짐 —
-활성화 절차는 `tinybird/README.md` 참조.
+Cookie-less self-hosted collection (pageview / contact_click) via the
+`tinybird/` data project. Collection is off while `TB_TOKEN` in
+`src/components/Head.astro` is empty — see `tinybird/README.md` to enable.
 
-## 배포
+## Deployment
 
-`main` 브랜치에 푸시하면 `.github/workflows/deploy.yml`이 빌드 후 GitHub Pages로 배포합니다.
-저장소 설정 → **Settings → Pages → Source**를 `GitHub Actions`로 한 번 설정해 주세요.
+Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds and
+deploys to GitHub Pages. One-time setup: repository **Settings → Pages →
+Source** must be set to `GitHub Actions`.
